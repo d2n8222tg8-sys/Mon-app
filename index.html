@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -8,713 +9,434 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="3B Academy">
-<meta name="mobile-web-app-capable" content="yes">
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='32' fill='%230A0A0A'/%3E%3Ctext x='96' y='110' font-family='Arial Black' font-size='52' font-weight='900' fill='%236BAA3D' text-anchor='middle'%3E3B%3C/text%3E%3Ctext x='96' y='150' font-family='Arial' font-size='18' font-weight='700' fill='white' text-anchor='middle'%3EAcademy%3C/text%3E%3C/svg%3E">
-<link rel="manifest" href='data:application/json,{"name":"3B INTER Academy","short_name":"3B Academy","start_url":".","display":"standalone","background_color":"#0A0A0A","theme_color":"#6BAA3D","icons":[{"src":"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 192 192%27%3E%3Crect width=%27192%27 height=%27192%27 rx=%2732%27 fill=%27%230A0A0A%27/%3E%3Ctext x=%2796%27 y=%27110%27 font-family=%27Arial Black%27 font-size=%2752%27 font-weight=%27900%27 fill=%27%236BAA3D%27 text-anchor=%27middle%27%3E3B%3C/text%3E%3Ctext x=%2796%27 y=%27150%27 font-family=%27Arial%27 font-size=%2718%27 font-weight=%27700%27 fill=%27white%27 text-anchor=%27middle%27%3EAcademy%3C/text%3E%3C/svg%3E","sizes":"192x192","type":"image/svg+xml"}]}'>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --green: #6BAA3D;
-  --green-dark: #558B30;
-  --green-light: #8AC558;
-  --black: #0A0A0A;
-  --dark: #0F1116;
-  --dark2: #181B22;
-  --dark3: #232730;
-  --dark4: #2A2F3A;
-  --gray: #8B909A;
-  --light: #E8EAF0;
-  --white: #FFFFFF;
-  --orange: #F4A019;
-  --red: #E74C3C;
-  --blue: #3498DB;
-  --success: #2ECC71;
-  --gold: #FFD700;
-  --safe-top: env(safe-area-inset-top);
-  --safe-bot: env(safe-area-inset-bottom);
-}
-* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-html, body { overflow-x:hidden; }
-body { background:var(--dark); color:var(--light); font-family:'Barlow',sans-serif; min-height:100vh; padding-bottom:calc(70px + var(--safe-bot)); padding-top:var(--safe-top); -webkit-user-select:none; user-select:none; }
-
-/* HEADER MOBILE */
-.app-header {
-  position:sticky; top:0; z-index:90;
-  background:linear-gradient(180deg,var(--black) 0%, rgba(10,10,10,0.95) 100%);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--dark3);
-  padding:14px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px;
-}
-.app-header-left { display:flex; align-items:center; gap:10px; flex:1; min-width:0; }
-.brand-mini { font-family:'Barlow Condensed',sans-serif; font-size:18px; font-weight:900; letter-spacing:0.5px; line-height:1; }
-.brand-mini .gr { color:var(--green); }
-.page-title-h { font-size:14px; font-weight:600; color:var(--gray); text-transform:uppercase; letter-spacing:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.xp-pill {
-  background:linear-gradient(135deg,var(--green),var(--green-dark));
-  color:#fff; font-weight:800; font-size:12px;
-  padding:6px 12px; border-radius:14px;
-  font-family:'Barlow Condensed',sans-serif; letter-spacing:1px;
-  display:flex; align-items:center; gap:4px; flex-shrink:0;
-}
-.streak-pill {
-  background:linear-gradient(135deg,var(--orange),#D88A0A);
-  color:#fff; font-weight:800; font-size:12px;
-  padding:6px 10px; border-radius:14px;
-  font-family:'Barlow Condensed',sans-serif;
-  display:flex; align-items:center; gap:3px; flex-shrink:0;
-}
-
-/* CONTENT */
-.content { padding:16px; max-width:780px; margin:0 auto; }
-
-/* BOTTOM NAVIGATION (iOS-style) */
-.bottom-nav {
-  position:fixed; bottom:0; left:0; right:0; z-index:100;
-  background:var(--black); border-top:1px solid var(--dark3);
-  display:flex; padding:8px 4px calc(8px + var(--safe-bot));
-}
-.bn-item {
-  flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
-  padding:6px 2px; cursor:pointer; transition:all 0.2s;
-  color:var(--gray); font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;
-  text-align:center; gap:3px;
-}
-.bn-item.active { color:var(--green); }
-.bn-icon { font-size:22px; line-height:1; }
-
-/* CARDS & GENERAL */
-.card {
-  background:var(--dark2); border:1px solid var(--dark3); border-radius:14px;
-  padding:18px; margin-bottom:12px; cursor:pointer; transition:all 0.2s;
-  position:relative; overflow:hidden;
-}
-.card:active { transform:scale(0.98); border-color:var(--green); }
-.card-row { display:flex; align-items:center; gap:14px; }
-.card-icon { font-size:30px; flex-shrink:0; width:48px; height:48px; display:flex; align-items:center; justify-content:center; background:var(--dark3); border-radius:12px; }
-.card-body { flex:1; min-width:0; }
-.card-title { font-family:'Barlow Condensed',sans-serif; font-size:18px; font-weight:800; color:var(--white); letter-spacing:0.5px; margin-bottom:3px; }
-.card-desc { font-size:12px; color:var(--gray); line-height:1.4; }
-.card-arrow { color:var(--gray); font-size:18px; flex-shrink:0; }
-.card-badge { position:absolute; top:10px; right:10px; background:var(--green); color:#fff; font-size:9px; font-weight:800; padding:3px 7px; border-radius:8px; letter-spacing:1px; }
-
-/* SECTION */
-.section-h {
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:24px; font-weight:900; letter-spacing:1px;
-  margin:18px 0 12px; color:var(--white);
-}
-.section-h .gr { color:var(--green); }
-.section-sub { color:var(--gray); font-size:13px; margin-bottom:14px; line-height:1.5; }
-
-/* DASHBOARD STATS */
-.greet-card {
-  background:linear-gradient(135deg, rgba(107,170,61,0.18), rgba(107,170,61,0.04));
-  border:1px solid var(--green); border-radius:16px;
-  padding:18px; margin-bottom:16px;
-}
-.greet-h { font-family:'Barlow Condensed',sans-serif; font-size:22px; font-weight:800; color:var(--white); margin-bottom:4px; }
-.greet-sub { color:var(--green-light); font-size:13px; font-weight:600; }
-.greet-stats { display:flex; gap:8px; margin-top:14px; }
-.greet-stat { flex:1; background:rgba(0,0,0,0.3); border-radius:10px; padding:10px 8px; text-align:center; }
-.gs-val { font-family:'Barlow Condensed',sans-serif; font-size:22px; font-weight:900; color:var(--green); line-height:1; }
-.gs-lbl { font-size:9px; color:var(--gray); text-transform:uppercase; letter-spacing:1px; margin-top:4px; }
-
-/* PROGRESS BAR */
-.prog-bar { height:6px; background:var(--dark3); border-radius:3px; overflow:hidden; }
-.prog-fill { height:100%; background:linear-gradient(90deg,var(--green),var(--green-light)); transition:width 0.5s; border-radius:3px; }
-
-/* PAGES */
-.page { display:none; }
-.page.active { display:block; animation:fadeIn 0.3s; }
-@keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
-
-/* QCM */
-.qcm-progress { margin-bottom:20px; }
-.qcm-progress-info { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-size:12px; color:var(--gray); font-weight:600; }
-.qcm-card {
-  background:var(--dark2); border:1px solid var(--dark3); border-radius:16px; padding:20px;
-}
-.qcm-theme { font-size:10px; color:var(--green); text-transform:uppercase; letter-spacing:2px; font-weight:800; margin-bottom:8px; }
-.qcm-question {
-  font-family:'Barlow Condensed',sans-serif; font-size:21px; font-weight:700; color:var(--white);
-  margin-bottom:18px; line-height:1.3;
-}
-.qcm-options { display:flex; flex-direction:column; gap:10px; margin-bottom:14px; }
-.qcm-option {
-  background:var(--dark3); border:2px solid var(--dark3); border-radius:12px;
-  padding:14px 16px; cursor:pointer; transition:all 0.15s;
-  font-size:14px; font-weight:500; color:var(--light);
-  display:flex; align-items:center; gap:12px;
-}
-.qcm-option:active:not(.disabled) { transform:scale(0.98); }
-.qcm-option.correct { border-color:var(--success); background:rgba(46,204,113,0.12); color:var(--success); }
-.qcm-option.wrong { border-color:var(--red); background:rgba(231,76,60,0.12); color:var(--red); }
-.qcm-option.disabled { cursor:default; }
-.opt-letter {
-  width:30px; height:30px; border-radius:8px; background:var(--dark2);
-  display:flex; align-items:center; justify-content:center;
-  font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:15px; flex-shrink:0;
-}
-.qcm-option.correct .opt-letter { background:var(--success); color:#fff; }
-.qcm-option.wrong .opt-letter { background:var(--red); color:#fff; }
-.qcm-feedback {
-  padding:12px 14px; border-radius:10px; margin-bottom:12px;
-  font-size:13px; line-height:1.5; display:none;
-}
-.qcm-feedback.show { display:block; animation:fadeIn 0.3s; }
-.qcm-feedback.correct-fb { background:rgba(46,204,113,0.12); border:1px solid var(--success); color:var(--success); }
-.qcm-feedback.wrong-fb { background:rgba(231,76,60,0.12); border:1px solid var(--red); color:var(--red); }
-
-/* BUTTONS */
-.btn {
-  background:var(--green); color:#fff; font-weight:800;
-  font-family:'Barlow Condensed',sans-serif; font-size:16px; letter-spacing:1px;
-  padding:14px 22px; border-radius:12px; border:none; cursor:pointer;
-  transition:all 0.15s; text-transform:uppercase; width:100%; display:block;
-}
-.btn:active { transform:scale(0.97); background:var(--green-dark); }
-.btn-ghost {
-  background:transparent; color:var(--gray);
-  font-weight:700; font-family:'Barlow Condensed',sans-serif; font-size:14px;
-  padding:12px 18px; border-radius:10px; border:1px solid var(--dark3);
-  cursor:pointer; letter-spacing:1px; text-transform:uppercase; width:100%;
-}
-.btn-ghost:active { transform:scale(0.97); border-color:var(--gray); color:var(--light); }
-.btn-row { display:flex; gap:8px; margin-top:12px; }
-.btn-row > * { flex:1; }
-
-/* RESULT */
-.result-card {
-  text-align:center; padding:30px 20px;
-  background:var(--dark2); border:1px solid var(--dark3); border-radius:18px;
-}
-.result-emoji { font-size:64px; margin-bottom:8px; }
-.result-score { font-family:'Barlow Condensed',sans-serif; font-size:54px; font-weight:900; color:var(--green); line-height:1; }
-.result-msg { color:var(--gray); font-size:13px; margin:8px 0 18px; }
-.xp-gained { background:rgba(107,170,61,0.15); border:1px solid var(--green); padding:10px 16px; border-radius:12px; color:var(--green); font-weight:700; font-size:14px; margin-bottom:16px; display:inline-block; }
-
-/* COURSE / LESSON */
-.lesson-content { background:var(--dark2); border:1px solid var(--dark3); border-radius:14px; padding:18px; margin-bottom:14px; }
-.lesson-title { font-family:'Barlow Condensed',sans-serif; font-size:22px; font-weight:800; color:var(--white); margin-bottom:14px; }
-.lesson-section { margin-bottom:18px; }
-.lesson-section h3 {
-  font-family:'Barlow Condensed',sans-serif; font-size:15px; font-weight:800;
-  color:var(--green); border-bottom:1px solid var(--dark3); padding-bottom:6px; margin-bottom:10px;
-  text-transform:uppercase; letter-spacing:1px;
-}
-.lesson-section p { color:var(--light); line-height:1.65; font-size:14px; margin-bottom:8px; }
-
-/* INFO BOXES */
-.info-box {
-  background:rgba(107,170,61,0.08); border:1px solid rgba(107,170,61,0.3);
-  border-radius:10px; padding:12px 14px; margin-bottom:10px; font-size:13px; line-height:1.55;
-}
-.info-box .ib-title { font-weight:800; color:var(--green); margin-bottom:4px; font-size:11px; text-transform:uppercase; letter-spacing:1px; }
-.info-box.warn { background:rgba(244,160,25,0.08); border-color:rgba(244,160,25,0.3); }
-.info-box.warn .ib-title { color:var(--orange); }
-.info-box.danger { background:rgba(231,76,60,0.08); border-color:rgba(231,76,60,0.3); }
-.info-box.danger .ib-title { color:var(--red); }
-
-/* TABLES */
-.tbl { width:100%; border-collapse:collapse; font-size:12.5px; margin-top:8px; }
-.tbl th { background:var(--dark3); color:var(--green); text-transform:uppercase; font-size:10px; letter-spacing:1px; padding:8px 10px; text-align:left; font-weight:700; }
-.tbl td { padding:8px 10px; border-bottom:1px solid var(--dark3); color:var(--light); }
-.tbl tr:last-child td { border-bottom:none; }
-
-/* BADGES & TAGS */
-.tag-row { display:flex; flex-wrap:wrap; gap:5px; margin-top:8px; }
-.tag { background:var(--dark3); border-radius:6px; padding:4px 8px; font-size:11px; color:var(--light); font-weight:600; }
-.tag.green { background:rgba(107,170,61,0.15); border:1px solid var(--green); color:var(--green); }
-.tag.orange { background:rgba(244,160,25,0.15); border:1px solid var(--orange); color:var(--orange); }
-.tag.red { background:rgba(231,76,60,0.15); border:1px solid var(--red); color:var(--red); }
-
-/* DAY PROGRAMME (Code de la route style) */
-.day-card {
-  background:var(--dark2); border:1px solid var(--dark3); border-radius:14px;
-  padding:14px; margin-bottom:10px; cursor:pointer; transition:all 0.2s;
-  display:flex; align-items:center; gap:14px;
-}
-.day-card:active { transform:scale(0.98); }
-.day-num {
-  width:46px; height:46px; border-radius:12px; flex-shrink:0;
-  background:var(--dark3); display:flex; align-items:center; justify-content:center;
-  font-family:'Barlow Condensed',sans-serif; font-size:22px; font-weight:900;
-  color:var(--gray);
-}
-.day-card.done .day-num { background:var(--success); color:#fff; }
-.day-card.current .day-num { background:var(--green); color:#fff; box-shadow:0 0 0 3px rgba(107,170,61,0.2); }
-.day-card.locked { opacity:0.5; cursor:not-allowed; }
-.day-card.locked .day-num { background:var(--dark3); }
-.day-info { flex:1; min-width:0; }
-.day-titre { font-weight:700; font-size:14px; margin-bottom:3px; color:var(--white); }
-.day-obj { font-size:11px; color:var(--gray); }
-.day-status { font-size:18px; flex-shrink:0; }
-
-/* MINI-GAMES */
-.game-card {
-  background:linear-gradient(135deg, var(--dark2), var(--dark3));
-  border:1px solid var(--dark3); border-radius:16px;
-  padding:18px; margin-bottom:12px; cursor:pointer; transition:all 0.2s;
-  position:relative; overflow:hidden;
-}
-.game-card:active { transform:scale(0.98); }
-.game-card-icon { font-size:40px; margin-bottom:8px; }
-.game-card-title { font-family:'Barlow Condensed',sans-serif; font-size:20px; font-weight:800; color:var(--white); margin-bottom:4px; }
-.game-card-desc { font-size:12px; color:var(--gray); line-height:1.4; }
-.game-card-reward { display:inline-block; background:var(--gold); color:#000; font-size:10px; font-weight:800; padding:3px 8px; border-radius:8px; margin-top:8px; letter-spacing:0.5px; }
-
-/* MACHINE CARDS */
-.machine-card {
-  background:var(--dark2); border:1px solid var(--dark3); border-radius:12px;
-  padding:14px; margin-bottom:10px; cursor:pointer; transition:all 0.2s;
-}
-.machine-card:active { transform:scale(0.98); border-color:var(--green); }
-.mc-brand { font-size:10px; color:var(--green); text-transform:uppercase; letter-spacing:2px; font-weight:800; margin-bottom:4px; }
-.mc-name { font-family:'Barlow Condensed',sans-serif; font-size:19px; font-weight:800; color:var(--white); margin-bottom:6px; }
-.mc-meta { font-size:12px; color:var(--gray); line-height:1.4; margin-bottom:8px; }
-.mc-pills { display:flex; flex-wrap:wrap; gap:5px; }
-.pill { background:var(--dark3); padding:3px 8px; border-radius:6px; font-size:11px; color:var(--gray); font-weight:600; }
-.pill.tonnage { background:rgba(107,170,61,0.15); color:var(--green); }
-.pill.power { background:rgba(244,160,25,0.15); color:var(--orange); }
-
-/* PRICE BLOCK */
-.price-block { background:var(--dark3); border-radius:10px; padding:12px; margin-top:10px; }
-.price-row { display:flex; justify-content:space-between; padding:5px 0; font-size:13px; }
-.price-row .pk { color:var(--gray); }
-.price-row .pv { color:var(--white); font-weight:700; }
-.price-row.neuf .pv { color:var(--green); }
-.price-row.occ3 .pv { color:var(--blue); }
-.price-row.occ5 .pv { color:var(--orange); }
-
-/* PANNE CARDS */
-.panne-card {
-  background:var(--dark2); border:1px solid var(--dark3); border-radius:12px;
-  padding:14px; margin-bottom:10px;
-}
-.panne-symptome { font-family:'Barlow Condensed',sans-serif; font-weight:800; color:var(--white); font-size:16px; margin-bottom:8px; }
-.panne-grav { display:inline-block; font-size:10px; font-weight:800; padding:3px 8px; border-radius:6px; letter-spacing:1px; margin-bottom:8px; }
-.panne-grav.MOYENNE { background:rgba(244,160,25,0.2); color:var(--orange); }
-.panne-grav.ÉLEVÉE { background:rgba(244,160,25,0.3); color:var(--orange); }
-.panne-grav.CRITIQUE, .panne-grav.BLOQUANTE { background:rgba(231,76,60,0.2); color:var(--red); }
-.panne-grav.FAIBLE { background:rgba(52,152,219,0.2); color:var(--blue); }
-.panne-block { font-size:12.5px; line-height:1.5; margin-top:8px; }
-.panne-block strong { color:var(--green); display:block; font-size:11px; text-transform:uppercase; letter-spacing:1px; margin-bottom:3px; }
-
-/* STATS PAGE */
-.stats-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
-.stat-tile { background:var(--dark2); border:1px solid var(--dark3); border-radius:14px; padding:14px; }
-.st-icon { font-size:24px; margin-bottom:4px; }
-.st-val { font-family:'Barlow Condensed',sans-serif; font-size:26px; font-weight:900; color:var(--green); line-height:1; }
-.st-lbl { font-size:11px; color:var(--gray); text-transform:uppercase; letter-spacing:1px; margin-top:3px; }
-
-.theme-stats { background:var(--dark2); border:1px solid var(--dark3); border-radius:14px; padding:14px; margin-bottom:10px; }
-.ts-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; font-size:13px; }
-.ts-name { color:var(--white); font-weight:600; }
-.ts-stats { color:var(--gray); font-size:11px; }
-.ts-bar { height:5px; background:var(--dark3); border-radius:3px; overflow:hidden; }
-.ts-bar-fill { height:100%; transition:width 0.5s; }
-
-/* MINI-GAME ENGINE */
-.game-screen { background:var(--dark2); border:1px solid var(--dark3); border-radius:16px; padding:20px; }
-.game-question { font-family:'Barlow Condensed',sans-serif; font-size:20px; font-weight:800; color:var(--white); text-align:center; margin-bottom:14px; line-height:1.3; }
-.game-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:14px; }
-.game-tile {
-  background:var(--dark3); border:2px solid var(--dark3); border-radius:12px;
-  padding:18px 12px; text-align:center; cursor:pointer; transition:all 0.15s;
-  font-weight:700; font-size:13px; color:var(--light);
-}
-.game-tile:active:not(.disabled) { transform:scale(0.96); }
-.game-tile.correct { border-color:var(--success); background:rgba(46,204,113,0.15); color:var(--success); }
-.game-tile.wrong { border-color:var(--red); background:rgba(231,76,60,0.15); color:var(--red); }
-.game-tile-icon { font-size:32px; display:block; margin-bottom:6px; }
-.game-score-mini { display:flex; justify-content:space-around; padding:10px; background:var(--dark3); border-radius:10px; margin-bottom:14px; }
-.gsm-item { text-align:center; }
-.gsm-val { font-family:'Barlow Condensed',sans-serif; font-size:22px; font-weight:900; color:var(--green); line-height:1; }
-.gsm-lbl { font-size:10px; color:var(--gray); text-transform:uppercase; letter-spacing:1px; margin-top:2px; }
-
-/* TOAST NOTIFICATION */
-.toast {
-  position:fixed; bottom:calc(80px + var(--safe-bot)); left:50%; transform:translateX(-50%);
-  background:var(--dark2); border:1px solid var(--green); border-radius:12px;
-  padding:12px 20px; font-weight:700; color:var(--green);
-  box-shadow:0 4px 20px rgba(107,170,61,0.3); z-index:200;
-  animation:toastIn 0.3s, toastOut 0.3s 2.5s forwards;
-}
-@keyframes toastIn { from { opacity:0; transform:translateX(-50%) translateY(20px); } to { opacity:1; transform:translateX(-50%); } }
-@keyframes toastOut { to { opacity:0; transform:translateX(-50%) translateY(20px); } }
-
-/* BACK BUTTON */
-.back-btn {
-  display:flex; align-items:center; gap:6px; color:var(--gray);
-  font-size:14px; font-weight:600; cursor:pointer;
-  margin-bottom:12px; padding:6px 0;
-}
-.back-btn:active { color:var(--green); }
-
-/* GLOSSAIRE / FLASHCARDS */
-.flashcard {
-  background:linear-gradient(135deg, var(--dark2), var(--dark3));
-  border:2px solid var(--dark3); border-radius:18px; padding:32px 20px;
-  min-height:240px; display:flex; align-items:center; justify-content:center;
-  flex-direction:column; cursor:pointer; transition:all 0.2s;
-}
-.flashcard:active { transform:scale(0.98); border-color:var(--green); }
-.fc-label { font-size:10px; text-transform:uppercase; letter-spacing:2px; color:var(--gray); margin-bottom:14px; font-weight:800; }
-.fc-text { font-family:'Barlow Condensed',sans-serif; font-size:24px; font-weight:700; color:var(--white); text-align:center; line-height:1.3; }
-.fc-hint { font-size:11px; color:var(--gray); margin-top:12px; }
-
-/* INSTALLATION HELP */
-.install-card {
-  background:linear-gradient(135deg, rgba(107,170,61,0.15), rgba(107,170,61,0.04));
-  border:1px solid var(--green); border-radius:14px;
-  padding:16px; margin-bottom:14px;
-}
-.install-step {
-  display:flex; gap:12px; margin-bottom:10px; align-items:flex-start;
-  padding:10px; background:rgba(0,0,0,0.3); border-radius:10px;
-}
-.install-step-num {
-  background:var(--green); color:#fff; width:24px; height:24px; border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
-  font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:13px; flex-shrink:0;
-}
-.install-step-txt { font-size:13px; line-height:1.5; }
-
-.hidden { display:none !important; }
+:root{--green:#6BAA3D;--green-dark:#558B30;--green-light:#8AC558;--black:#0A0A0A;--dark:#0F1116;--dark2:#181B22;--dark3:#232730;--gray:#8B909A;--light:#E8EAF0;--white:#FFF;--orange:#F4A019;--red:#E74C3C;--blue:#3498DB;--success:#2ECC71;--gold:#FFD700;--safe-top:env(safe-area-inset-top);--safe-bot:env(safe-area-inset-bottom)}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{overflow-x:hidden}
+body{background:var(--dark);color:var(--light);font-family:'Barlow',sans-serif;min-height:100vh;padding-bottom:calc(70px + var(--safe-bot));padding-top:var(--safe-top);-webkit-user-select:none;user-select:none}
+.app-header{position:sticky;top:0;z-index:90;background:linear-gradient(180deg,var(--black) 0%,rgba(10,10,10,0.95) 100%);border-bottom:1px solid var(--dark3);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand-mini{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;line-height:1}
+.brand-mini .gr{color:var(--green)}
+.xp-pill{background:linear-gradient(135deg,var(--green),var(--green-dark));color:#fff;font-weight:800;font-size:12px;padding:6px 12px;border-radius:14px;font-family:'Barlow Condensed',sans-serif;letter-spacing:1px}
+.streak-pill{background:linear-gradient(135deg,var(--orange),#D88A0A);color:#fff;font-weight:800;font-size:12px;padding:6px 10px;border-radius:14px;font-family:'Barlow Condensed',sans-serif}
+.content{padding:16px;max-width:780px;margin:0 auto}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--black);border-top:1px solid var(--dark3);display:flex;padding:8px 4px calc(8px + var(--safe-bot))}
+.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;padding:6px 2px;cursor:pointer;color:var(--gray);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;text-align:center;gap:3px}
+.bn-item.active{color:var(--green)}
+.bn-icon{font-size:22px;line-height:1}
+.card{background:var(--dark2);border:1px solid var(--dark3);border-radius:14px;padding:18px;margin-bottom:12px;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden}
+.card:active{transform:scale(0.98);border-color:var(--green)}
+.card-row{display:flex;align-items:center;gap:14px}
+.card-icon{font-size:30px;flex-shrink:0;width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:var(--dark3);border-radius:12px}
+.card-body{flex:1;min-width:0}
+.card-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:3px}
+.card-desc{font-size:12px;color:var(--gray);line-height:1.4}
+.card-arrow{color:var(--gray);font-size:18px}
+.card-badge{position:absolute;top:10px;right:10px;background:var(--green);color:#fff;font-size:9px;font-weight:800;padding:3px 7px;border-radius:8px}
+.section-h{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;letter-spacing:1px;margin:18px 0 12px;color:var(--white)}
+.section-h .gr{color:var(--green)}
+.section-sub{color:var(--gray);font-size:13px;margin-bottom:14px;line-height:1.5}
+.greet-card{background:linear-gradient(135deg,rgba(107,170,61,0.18),rgba(107,170,61,0.04));border:1px solid var(--green);border-radius:16px;padding:18px;margin-bottom:16px}
+.greet-h{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;color:var(--white);margin-bottom:4px}
+.greet-sub{color:var(--green-light);font-size:13px;font-weight:600}
+.greet-stats{display:flex;gap:8px;margin-top:14px}
+.greet-stat{flex:1;background:rgba(0,0,0,0.3);border-radius:10px;padding:10px 8px;text-align:center}
+.gs-val{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:var(--green);line-height:1}
+.gs-lbl{font-size:9px;color:var(--gray);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+.prog-bar{height:6px;background:var(--dark3);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--green-light));transition:width 0.5s}
+.page{display:none}
+.page.active{display:block;animation:fadeIn 0.3s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.qcm-progress{margin-bottom:20px}
+.qcm-progress-info{display:flex;justify-content:space-between;margin-bottom:8px;font-size:12px;color:var(--gray);font-weight:600}
+.qcm-card{background:var(--dark2);border:1px solid var(--dark3);border-radius:16px;padding:20px}
+.qcm-theme{font-size:10px;color:var(--green);text-transform:uppercase;letter-spacing:2px;font-weight:800;margin-bottom:8px}
+.qcm-question{font-family:'Barlow Condensed',sans-serif;font-size:21px;font-weight:700;color:var(--white);margin-bottom:18px;line-height:1.3}
+.qcm-options{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.qcm-option{background:var(--dark3);border:2px solid var(--dark3);border-radius:12px;padding:14px 16px;cursor:pointer;font-size:14px;color:var(--light);display:flex;align-items:center;gap:12px}
+.qcm-option:active:not(.disabled){transform:scale(0.98)}
+.qcm-option.correct{border-color:var(--success);background:rgba(46,204,113,0.12);color:var(--success)}
+.qcm-option.wrong{border-color:var(--red);background:rgba(231,76,60,0.12);color:var(--red)}
+.qcm-option.disabled{cursor:default}
+.opt-letter{width:30px;height:30px;border-radius:8px;background:var(--dark2);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;flex-shrink:0}
+.qcm-option.correct .opt-letter{background:var(--success);color:#fff}
+.qcm-option.wrong .opt-letter{background:var(--red);color:#fff}
+.qcm-feedback{padding:12px 14px;border-radius:10px;margin-bottom:12px;font-size:13px;line-height:1.5;display:none}
+.qcm-feedback.show{display:block}
+.qcm-feedback.correct-fb{background:rgba(46,204,113,0.12);border:1px solid var(--success);color:var(--success)}
+.qcm-feedback.wrong-fb{background:rgba(231,76,60,0.12);border:1px solid var(--red);color:var(--red)}
+.btn{background:var(--green);color:#fff;font-weight:800;font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:1px;padding:14px 22px;border-radius:12px;border:none;cursor:pointer;text-transform:uppercase;width:100%;display:block}
+.btn:active{transform:scale(0.97);background:var(--green-dark)}
+.btn-ghost{background:transparent;color:var(--gray);font-weight:700;font-family:'Barlow Condensed',sans-serif;font-size:14px;padding:12px 18px;border-radius:10px;border:1px solid var(--dark3);cursor:pointer;text-transform:uppercase;width:100%}
+.btn-row{display:flex;gap:8px;margin-top:12px}
+.btn-row > *{flex:1}
+.result-card{text-align:center;padding:30px 20px;background:var(--dark2);border:1px solid var(--dark3);border-radius:18px}
+.result-emoji{font-size:64px;margin-bottom:8px}
+.result-score{font-family:'Barlow Condensed',sans-serif;font-size:54px;font-weight:900;color:var(--green);line-height:1}
+.result-msg{color:var(--gray);font-size:13px;margin:8px 0 18px}
+.xp-gained{background:rgba(107,170,61,0.15);border:1px solid var(--green);padding:10px 16px;border-radius:12px;color:var(--green);font-weight:700;font-size:14px;margin-bottom:16px;display:inline-block}
+.lesson-content{background:var(--dark2);border:1px solid var(--dark3);border-radius:14px;padding:18px;margin-bottom:14px}
+.lesson-title{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;color:var(--white);margin-bottom:14px}
+.lesson-section{margin-bottom:18px}
+.lesson-section h3{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:800;color:var(--green);border-bottom:1px solid var(--dark3);padding-bottom:6px;margin-bottom:10px;text-transform:uppercase}
+.lesson-section p{color:var(--light);line-height:1.65;font-size:14px;margin-bottom:8px}
+.info-box{background:rgba(107,170,61,0.08);border:1px solid rgba(107,170,61,0.3);border-radius:10px;padding:12px 14px;margin-bottom:10px;font-size:13px;line-height:1.55}
+.info-box .ib-title{font-weight:800;color:var(--green);margin-bottom:4px;font-size:11px;text-transform:uppercase}
+.day-card{background:var(--dark2);border:1px solid var(--dark3);border-radius:14px;padding:14px;margin-bottom:10px;cursor:pointer;display:flex;align-items:center;gap:14px}
+.day-card:active{transform:scale(0.98)}
+.day-num{width:46px;height:46px;border-radius:12px;flex-shrink:0;background:var(--dark3);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:var(--gray)}
+.day-card.done .day-num{background:var(--success);color:#fff}
+.day-card.current .day-num{background:var(--green);color:#fff;box-shadow:0 0 0 3px rgba(107,170,61,0.2)}
+.day-info{flex:1;min-width:0}
+.day-titre{font-weight:700;font-size:14px;margin-bottom:3px;color:var(--white)}
+.day-obj{font-size:11px;color:var(--gray)}
+.day-status{font-size:18px}
+.game-card{background:linear-gradient(135deg,var(--dark2),var(--dark3));border:1px solid var(--dark3);border-radius:16px;padding:18px;margin-bottom:12px;cursor:pointer}
+.game-card:active{transform:scale(0.98)}
+.game-card-icon{font-size:40px;margin-bottom:8px}
+.game-card-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;color:var(--white);margin-bottom:4px}
+.game-card-desc{font-size:12px;color:var(--gray);line-height:1.4}
+.game-card-reward{display:inline-block;background:var(--gold);color:#000;font-size:10px;font-weight:800;padding:3px 8px;border-radius:8px;margin-top:8px}
+.machine-card{background:var(--dark2);border:1px solid var(--dark3);border-radius:12px;padding:14px;margin-bottom:10px;cursor:pointer}
+.machine-card:active{transform:scale(0.98);border-color:var(--green)}
+.mc-brand{font-size:10px;color:var(--green);text-transform:uppercase;letter-spacing:2px;font-weight:800;margin-bottom:4px}
+.mc-name{font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:800;color:var(--white);margin-bottom:6px}
+.mc-meta{font-size:12px;color:var(--gray);line-height:1.4;margin-bottom:8px}
+.mc-pills{display:flex;flex-wrap:wrap;gap:5px}
+.pill{background:var(--dark3);padding:3px 8px;border-radius:6px;font-size:11px;color:var(--gray);font-weight:600}
+.pill.tonnage{background:rgba(107,170,61,0.15);color:var(--green)}
+.pill.power{background:rgba(244,160,25,0.15);color:var(--orange)}
+.price-block{background:var(--dark3);border-radius:10px;padding:12px;margin-top:10px}
+.price-row{display:flex;justify-content:space-between;padding:5px 0;font-size:13px}
+.price-row .pk{color:var(--gray)}
+.price-row .pv{color:var(--white);font-weight:700}
+.price-row.neuf .pv{color:var(--green)}
+.price-row.occ3 .pv{color:var(--blue)}
+.price-row.occ5 .pv{color:var(--orange)}
+.panne-card{background:var(--dark2);border:1px solid var(--dark3);border-radius:12px;padding:14px;margin-bottom:10px}
+.panne-symptome{font-family:'Barlow Condensed',sans-serif;font-weight:800;color:var(--white);font-size:16px;margin-bottom:8px}
+.panne-grav{display:inline-block;font-size:10px;font-weight:800;padding:3px 8px;border-radius:6px;margin-bottom:8px}
+.panne-grav.MOYENNE{background:rgba(244,160,25,0.2);color:var(--orange)}
+.panne-grav.ELEVEE{background:rgba(244,160,25,0.3);color:var(--orange)}
+.panne-grav.CRITIQUE{background:rgba(231,76,60,0.2);color:var(--red)}
+.panne-block{font-size:12.5px;line-height:1.5;margin-top:8px}
+.panne-block strong{color:var(--green);display:block;font-size:11px;text-transform:uppercase;margin-bottom:3px}
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.stat-tile{background:var(--dark2);border:1px solid var(--dark3);border-radius:14px;padding:14px}
+.st-icon{font-size:24px;margin-bottom:4px}
+.st-val{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:var(--green);line-height:1}
+.st-lbl{font-size:11px;color:var(--gray);text-transform:uppercase;margin-top:3px}
+.theme-stats{background:var(--dark2);border:1px solid var(--dark3);border-radius:14px;padding:14px;margin-bottom:10px}
+.ts-row{display:flex;justify-content:space-between;margin-bottom:8px;font-size:13px}
+.ts-name{color:var(--white);font-weight:600}
+.ts-stats{color:var(--gray);font-size:11px}
+.ts-bar{height:5px;background:var(--dark3);border-radius:3px;overflow:hidden}
+.ts-bar-fill{height:100%}
+.game-screen{background:var(--dark2);border:1px solid var(--dark3);border-radius:16px;padding:20px}
+.game-question{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;color:var(--white);text-align:center;margin-bottom:14px;line-height:1.3}
+.game-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}
+.game-tile{background:var(--dark3);border:2px solid var(--dark3);border-radius:12px;padding:18px 12px;text-align:center;cursor:pointer;font-weight:700;font-size:13px;color:var(--light)}
+.game-tile:active:not(.disabled){transform:scale(0.96)}
+.game-tile.correct{border-color:var(--success);background:rgba(46,204,113,0.15);color:var(--success)}
+.game-tile.wrong{border-color:var(--red);background:rgba(231,76,60,0.15);color:var(--red)}
+.game-tile-icon{font-size:32px;display:block;margin-bottom:6px}
+.game-score-mini{display:flex;justify-content:space-around;padding:10px;background:var(--dark3);border-radius:10px;margin-bottom:14px}
+.gsm-item{text-align:center}
+.gsm-val{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:var(--green);line-height:1}
+.gsm-lbl{font-size:10px;color:var(--gray);text-transform:uppercase;margin-top:2px}
+.toast{position:fixed;bottom:calc(80px + var(--safe-bot));left:50%;transform:translateX(-50%);background:var(--dark2);border:1px solid var(--green);border-radius:12px;padding:12px 20px;font-weight:700;color:var(--green);z-index:200}
+.back-btn{display:flex;align-items:center;gap:6px;color:var(--gray);font-size:14px;font-weight:600;cursor:pointer;margin-bottom:12px;padding:6px 0}
+.install-card{background:linear-gradient(135deg,rgba(107,170,61,0.15),rgba(107,170,61,0.04));border:1px solid var(--green);border-radius:14px;padding:16px;margin-bottom:14px}
+.install-step{display:flex;gap:12px;margin-bottom:10px;padding:10px;background:rgba(0,0,0,0.3);border-radius:10px}
+.install-step-num{background:var(--green);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0}
+.install-step-txt{font-size:13px;line-height:1.5}
+.hidden{display:none !important}
+.cat-btn{display:inline-block;background:var(--dark2);border:1px solid var(--dark3);padding:8px 14px;border-radius:20px;margin:0 6px 8px 0;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray)}
+.cat-btn.active{background:var(--green);color:#fff;border-color:var(--green)}
 </style>
 </head>
 <body>
-
 <header class="app-header">
-  <div class="app-header-left">
-    <div class="brand-mini"><span class="gr">3B</span> ACADEMY</div>
-  </div>
-  <div class="streak-pill">🔥 <span id="streak-val">0</span></div>
-  <div class="xp-pill">⚡ <span id="xp-val">0</span></div>
+<div><div class="brand-mini"><span class="gr">3B</span> ACADEMY</div></div>
+<div class="streak-pill">🔥 <span id="streak-val">0</span></div>
+<div class="xp-pill">⚡ <span id="xp-val">0</span></div>
 </header>
-
 <main class="content">
-
-  <!-- ======================== ACCUEIL ======================== -->
-  <div class="page active" id="page-home">
-    <div class="greet-card">
-      <div class="greet-h" id="greet-msg">Bienvenue !</div>
-      <div class="greet-sub" id="greet-sub">Prêt à apprendre aujourd'hui ?</div>
-      <div class="greet-stats">
-        <div class="greet-stat"><div class="gs-val" id="home-jour">1</div><div class="gs-lbl">Jour</div></div>
-        <div class="greet-stat"><div class="gs-val" id="home-qcm">0</div><div class="gs-lbl">QCM faits</div></div>
-        <div class="greet-stat"><div class="gs-val" id="home-pct">0%</div><div class="gs-lbl">Réussite</div></div>
-      </div>
-    </div>
-
-    <div class="section-h"><span class="gr">Aujourd'hui</span></div>
-    <div class="card" onclick="goToCurrentDay()">
-      <div class="card-row">
-        <div class="card-icon">📅</div>
-        <div class="card-body">
-          <div class="card-title" id="today-title">Programme du jour</div>
-          <div class="card-desc" id="today-desc">Continuer ma formation</div>
-        </div>
-        <div class="card-arrow">›</div>
-      </div>
-    </div>
-
-    <div class="section-h">Accès <span class="gr">rapide</span></div>
-    <div class="card" onclick="showPage('qcm')">
-      <div class="card-row">
-        <div class="card-icon">🎯</div>
-        <div class="card-body">
-          <div class="card-title">QCM libre</div>
-          <div class="card-desc">Choisir un thème et s'entraîner</div>
-        </div>
-        <div class="card-arrow">›</div>
-      </div>
-    </div>
-    <div class="card" onclick="showPage('games')">
-      <div class="card-row">
-        <div class="card-icon">🎮</div>
-        <div class="card-body">
-          <div class="card-title">Mini-jeux <span class="card-badge">XP+</span></div>
-          <div class="card-desc">Devine l'engin, BRH challenge, Pannes...</div>
-        </div>
-        <div class="card-arrow">›</div>
-      </div>
-    </div>
-    <div class="card" onclick="showPage('cours')">
-      <div class="card-row">
-        <div class="card-icon">📚</div>
-        <div class="card-body">
-          <div class="card-title">Cours & fiches</div>
-          <div class="card-desc">Révision libre par thème</div>
-        </div>
-        <div class="card-arrow">›</div>
-      </div>
-    </div>
-    <div class="card" onclick="showPage('stats')">
-      <div class="card-row">
-        <div class="card-icon">📊</div>
-        <div class="card-body">
-          <div class="card-title">Mes statistiques</div>
-          <div class="card-desc">Voir ma progression détaillée</div>
-        </div>
-        <div class="card-arrow">›</div>
-      </div>
-    </div>
-
-    <div class="section-h">Référence <span class="gr">3B</span></div>
-    <div class="card" onclick="showPage('catalogue')">
-      <div class="card-row">
-        <div class="card-icon">🚜</div>
-        <div class="card-body">
-          <div class="card-title">Catalogue 3B</div>
-          <div class="card-desc">56 engins · prix neuf/occasion</div>
-        </div>
-        <div class="card-arrow">›</div>
-      </div>
-    </div>
-    <div class="card" onclick="showPage('pannes')">
-      <div class="card-row">
-        <div class="card-icon">🔧</div>
-        <div class="card-body">
-          <div class="card-title">Pannes fréquentes</div>
-          <div class="card-desc">Diagnostic + solutions par engin</div>
-        </div>
-        <div class="card-arrow">›</div>
-      </div>
-    </div>
-    <div class="card" onclick="showPage('install')">
-      <div class="card-row">
-        <div class="card-icon">📱</div>
-        <div class="card-body">
-          <div class="card-title">Installer sur iPhone</div>
-          <div class="card-desc">3 étapes pour avoir l'icône</div>
-        </div>
-        <div class="card-arrow">›</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ======================== PROGRAMME 30J ======================== -->
-  <div class="page" id="page-programme">
-    <div class="section-h">Programme <span class="gr">30 jours</span></div>
-    <div class="section-sub">Une routine quotidienne pour maîtriser le métier en un mois. Compte de 20 à 30 minutes par jour.</div>
-    <div id="prog-list"></div>
-  </div>
-
-  <!-- ======================== JOUR ======================== -->
-  <div class="page" id="page-jour">
-    <div class="back-btn" onclick="showPage('programme')">‹ Retour au programme</div>
-    <div id="jour-content"></div>
-  </div>
-
-  <!-- ======================== QCM LIBRE ======================== -->
-  <div class="page" id="page-qcm">
-    <div class="section-h">QCM <span class="gr">libre</span></div>
-    <div class="section-sub">Choisis un thème et entraîne-toi.</div>
-    <div id="qcm-themes-list"></div>
-  </div>
-
-  <!-- ======================== QCM EN COURS ======================== -->
-  <div class="page" id="page-qcm-game">
-    <div class="qcm-progress">
-      <div class="qcm-progress-info">
-        <span id="qcm-counter">Question 1/10</span>
-        <span style="color:var(--green)" id="qcm-score-live">Score: 0</span>
-      </div>
-      <div class="prog-bar"><div class="prog-fill" id="qcm-prog-fill" style="width:0%"></div></div>
-    </div>
-    <div class="qcm-card">
-      <div class="qcm-theme" id="qcm-theme">Thème</div>
-      <div class="qcm-question" id="qcm-question"></div>
-      <div class="qcm-options" id="qcm-options"></div>
-      <div class="qcm-feedback" id="qcm-feedback"></div>
-      <button class="btn hidden" id="qcm-next-btn" onclick="nextQuestion()">Suivante →</button>
-    </div>
-  </div>
-
-  <!-- ======================== RÉSULTAT QCM ======================== -->
-  <div class="page" id="page-qcm-result">
-    <div class="result-card">
-      <div class="result-emoji" id="result-emoji">🏆</div>
-      <div class="result-score" id="result-score">0/10</div>
-      <div class="result-msg" id="result-msg">-</div>
-      <div class="xp-gained" id="result-xp">+0 XP</div>
-      <div class="btn-row">
-        <button class="btn-ghost" onclick="showPage('home')">Accueil</button>
-        <button class="btn" onclick="restartQCM()">Recommencer</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ======================== MINI-JEUX ======================== -->
-  <div class="page" id="page-games">
-    <div class="section-h">Mini-<span class="gr">jeux</span></div>
-    <div class="section-sub">Apprends en t'amusant. Chaque réponse correcte = XP bonus.</div>
-
-    <div class="game-card" onclick="startGame('devine-engin')">
-      <div class="game-card-icon">🚜</div>
-      <div class="game-card-title">Devine l'engin</div>
-      <div class="game-card-desc">Une description, 4 modèles. Trouve le bon !</div>
-      <span class="game-card-reward">⚡ +5 XP / bonne réponse</span>
-    </div>
-
-    <div class="game-card" onclick="startGame('brh-challenge')">
-      <div class="game-card-icon">🔨</div>
-      <div class="game-card-title">BRH Challenge</div>
-      <div class="game-card-desc">Pour cette pelle, quel BRH Montabert proposer ?</div>
-      <span class="game-card-reward">⚡ +8 XP / bonne réponse</span>
-    </div>
-
-    <div class="game-card" onclick="startGame('marque-modele')">
-      <div class="game-card-icon">🏭</div>
-      <div class="game-card-title">Marque & modèle</div>
-      <div class="game-card-desc">Ce modèle appartient à quelle marque ?</div>
-      <span class="game-card-reward">⚡ +3 XP / bonne réponse</span>
-    </div>
-
-    <div class="game-card" onclick="startGame('panne-detective')">
-      <div class="game-card-icon">🕵️</div>
-      <div class="game-card-title">Panne Detective</div>
-      <div class="game-card-desc">Un symptôme, 4 causes possibles. Trouve la bonne.</div>
-      <span class="game-card-reward">⚡ +10 XP / bonne réponse</span>
-    </div>
-
-    <div class="game-card" onclick="startGame('prix-juste')">
-      <div class="game-card-icon">💰</div>
-      <div class="game-card-title">Le Prix Juste</div>
-      <div class="game-card-desc">Estime le prix neuf de cet engin (fourchette).</div>
-      <span class="game-card-reward">⚡ +7 XP / bonne réponse</span>
-    </div>
-
- <div class="game-card" onclick="startGame('caces-flash')">
-      <div class="game-card-icon">🎓</div>
-      <div class="game-card-title">CACES Flash</div>
-      <div class="game-card-desc">Quelle catégorie pour cet engin ?</div>
-      <span class="game-card-reward">⚡ +5 XP / bonne réponse</span>
-    </div>
-  </div>
-
-  <!-- ======================== JEU EN COURS ======================== -->
-  <div class="page" id="page-game-play">
-    <div class="back-btn" onclick="showPage('games')">‹ Quitter le jeu</div>
-    <div class="game-score-mini">
-      <div class="gsm-item"><div class="gsm-val" id="game-q-num">1</div><div class="gsm-lbl">Q.</div></div>
-      <div class="gsm-item"><div class="gsm-val" id="game-good">0</div><div class="gsm-lbl">Réussites</div></div>
-      <div class="gsm-item"><div class="gsm-val" id="game-streak">0</div><div class="gsm-lbl">Série</div></div>
-      <div class="gsm-item"><div class="gsm-val" id="game-xp">0</div><div class="gsm-lbl">XP gagnés</div></div>
-    </div>
-    <div class="game-screen" id="game-screen-content"></div>
-  </div>
-
-  <!-- ======================== COURS ======================== -->
-  <div class="page" id="page-cours">
-    <div class="section-h">Cours & <span class="gr">fiches</span></div>
-    <div class="section-sub">Révision libre par thème.</div>
-    <div id="cours-list"></div>
-  </div>
-
-  <!-- ======================== COURS DÉTAIL ======================== -->
-  <div class="page" id="page-cours-detail">
-    <div class="back-btn" onclick="showPage('cours')">‹ Retour aux cours</div>
-    <div id="cours-detail-content"></div>
-  </div>
-
-  <!-- ======================== CATALOGUE ======================== -->
-  <div class="page" id="page-catalogue">
-    <div class="section-h">Catalogue <span class="gr">3B</span></div>
-    <div class="section-sub">56 engins du parc · prix neuf et occasion.</div>
-    <div id="cat-cats-list"></div>
-    <div id="cat-machines-list"></div>
-  </div>
-
-  <!-- ======================== MACHINE DÉTAIL ======================== -->
-  <div class="page" id="page-machine-detail">
-    <div class="back-btn" onclick="showPage('catalogue')">‹ Retour au catalogue</div>
-    <div id="machine-detail-content"></div>
-  </div>
-
-  <!-- ======================== PANNES ======================== -->
-  <div class="page" id="page-pannes">
-    <div class="section-h">Pannes <span class="gr">fréquentes</span></div>
-    <div class="section-sub">Diagnostic et solutions par type d'engin.</div>
-    <div id="pannes-list"></div>
-  </div>
-
-  <!-- ======================== PANNES DÉTAIL ======================== -->
-  <div class="page" id="page-pannes-detail">
-    <div class="back-btn" onclick="showPage('pannes')">‹ Retour aux pannes</div>
-    <div id="pannes-detail-content"></div>
-  </div>
-
-  <!-- ======================== STATS ======================== -->
-  <div class="page" id="page-stats">
-    <div class="section-h">Mes <span class="gr">statistiques</span></div>
-    <div class="section-sub">Suivi détaillé de ta progression.</div>
-    <div id="stats-content"></div>
-  </div>
-
-  <!-- ======================== INSTALL ======================== -->
-  <div class="page" id="page-install">
-    <div class="section-h">Installer sur <span class="gr">iPhone</span></div>
-    <div class="section-sub">L'app fonctionne sans internet une fois installée.</div>
-
-    <div class="install-card">
-      <div class="install-step">
-        <div class="install-step-num">1</div>
-        <div class="install-step-txt">Ouvre cette page dans <strong>Safari</strong> sur ton iPhone (pas dans Chrome ou autre).</div>
-      </div>
-      <div class="install-step">
-        <div class="install-step-num">2</div>
-        <div class="install-step-txt">Touche le bouton <strong>Partager</strong> en bas de Safari (carré avec une flèche vers le haut ↑).</div>
-      </div>
-      <div class="install-step">
-        <div class="install-step-num">3</div>
-        <div class="install-step-txt">Fais défiler et touche <strong>« Sur l'écran d'accueil »</strong>. Confirme avec <strong>« Ajouter »</strong>.</div>
-      </div>
-      <div class="install-step">
-        <div class="install-step-num">✅</div>
-        <div class="install-step-txt">L'icône <strong>3B Academy</strong> apparaît sur ton écran d'accueil. Touche-la : ça ressemble à une vraie app.</div>
-      </div>
-    </div>
-
-    <div class="info-box">
-      <div class="ib-title">📱 Utilisation hors-ligne</div>
-      Une fois ouverte une fois, l'app fonctionne sans connexion. Tes XP et ta progression sont sauvegardés sur ton téléphone.
-    </div>
-
-    <div class="info-box warn">
-      <div class="ib-title">🗑️ Pour réinitialiser</div>
-      Va dans Mes statistiques en bas de page et touche « Réinitialiser ma progression ». Ou désinstalle l'app et réinstalle.
-    </div>
-
-    <div class="section-h">Et sur <span class="gr">ordinateur</span> ?</div>
-    <div class="info-box">
-      <div class="ib-title">💻 Web classique</div>
-      Tu peux mettre cette page en favori dans ton navigateur. Sur Chrome/Edge desktop, tu peux aussi l'installer comme app via le menu (⋮) → « Installer 3B Academy ».
-    </div>
-  </div>
-
+<div class="page active" id="page-home">
+<div class="greet-card"><div class="greet-h" id="greet-msg">Bienvenue !</div><div class="greet-sub">Prêt à apprendre aujourd'hui ?</div>
+<div class="greet-stats"><div class="greet-stat"><div class="gs-val" id="home-jour">1</div><div class="gs-lbl">Jour</div></div><div class="greet-stat"><div class="gs-val" id="home-qcm">0</div><div class="gs-lbl">QCM faits</div></div><div class="greet-stat"><div class="gs-val" id="home-pct">0%</div><div class="gs-lbl">Réussite</div></div></div></div>
+<div class="section-h"><span class="gr">Aujourd'hui</span></div>
+<div class="card" onclick="goToCurrentDay()"><div class="card-row"><div class="card-icon">📅</div><div class="card-body"><div class="card-title" id="today-title">Programme du jour</div><div class="card-desc" id="today-desc">Continuer ma formation</div></div><div class="card-arrow">›</div></div></div>
+<div class="section-h">Accès <span class="gr">rapide</span></div>
+<div class="card" onclick="showPage('qcm')"><div class="card-row"><div class="card-icon">🎯</div><div class="card-body"><div class="card-title">QCM libre</div><div class="card-desc">Choisir un thème et s'entraîner</div></div><div class="card-arrow">›</div></div></div>
+<div class="card" onclick="showPage('games')"><div class="card-row"><div class="card-icon">🎮</div><div class="card-body"><div class="card-title">Mini-jeux <span class="card-badge">XP+</span></div><div class="card-desc">Devine l'engin, BRH challenge...</div></div><div class="card-arrow">›</div></div></div>
+<div class="card" onclick="showPage('cours')"><div class="card-row"><div class="card-icon">📚</div><div class="card-body"><div class="card-title">Cours & fiches</div><div class="card-desc">Révision libre par thème</div></div><div class="card-arrow">›</div></div></div>
+<div class="card" onclick="showPage('stats')"><div class="card-row"><div class="card-icon">📊</div><div class="card-body"><div class="card-title">Mes statistiques</div><div class="card-desc">Voir ma progression</div></div><div class="card-arrow">›</div></div></div>
+<div class="section-h">Référence <span class="gr">3B</span></div>
+<div class="card" onclick="showPage('catalogue')"><div class="card-row"><div class="card-icon">🚜</div><div class="card-body"><div class="card-title">Catalogue 3B</div><div class="card-desc">Engins · prix neuf/occasion</div></div><div class="card-arrow">›</div></div></div>
+<div class="card" onclick="showPage('pannes')"><div class="card-row"><div class="card-icon">🔧</div><div class="card-body"><div class="card-title">Pannes fréquentes</div><div class="card-desc">Diagnostic + solutions</div></div><div class="card-arrow">›</div></div></div>
+<div class="card" onclick="showPage('install')"><div class="card-row"><div class="card-icon">📱</div><div class="card-body"><div class="card-title">Installer sur iPhone</div><div class="card-desc">3 étapes pour avoir l'icône</div></div><div class="card-arrow">›</div></div></div>
+</div>
+<div class="page" id="page-programme"><div class="section-h">Programme <span class="gr">30 jours</span></div><div class="section-sub">Routine quotidienne pour maîtriser le métier en un mois.</div><div id="prog-list"></div></div>
+<div class="page" id="page-jour"><div class="back-btn" onclick="showPage('programme')">‹ Retour au programme</div><div id="jour-content"></div></div>
+<div class="page" id="page-qcm"><div class="section-h">QCM <span class="gr">libre</span></div><div class="section-sub">Choisis un thème et entraîne-toi.</div><div id="qcm-themes-list"></div></div>
+<div class="page" id="page-qcm-game">
+<div class="qcm-progress"><div class="qcm-progress-info"><span id="qcm-counter">Question 1/10</span><span style="color:var(--green)" id="qcm-score-live">Score: 0</span></div><div class="prog-bar"><div class="prog-fill" id="qcm-prog-fill" style="width:0%"></div></div></div>
+<div class="qcm-card"><div class="qcm-theme" id="qcm-theme">Thème</div><div class="qcm-question" id="qcm-question"></div><div class="qcm-options" id="qcm-options"></div><div class="qcm-feedback" id="qcm-feedback"></div><button class="btn hidden" id="qcm-next-btn" onclick="nextQuestion()">Suivante →</button></div>
+</div>
+<div class="page" id="page-qcm-result"><div class="result-card"><div class="result-emoji" id="result-emoji">🏆</div><div class="result-score" id="result-score">0/10</div><div class="result-msg" id="result-msg">-</div><div class="xp-gained" id="result-xp">+0 XP</div><div class="btn-row"><button class="btn-ghost" onclick="showPage('home')">Accueil</button><button class="btn" onclick="restartQCM()">Recommencer</button></div></div></div>
+<div class="page" id="page-games">
+<div class="section-h">Mini-<span class="gr">jeux</span></div>
+<div class="section-sub">Apprends en t'amusant. Chaque réponse correcte = XP bonus.</div>
+<div class="game-card" onclick="startGame('devine-engin')"><div class="game-card-icon">🚜</div><div class="game-card-title">Devine l'engin</div><div class="game-card-desc">Une description, 4 modèles. Trouve le bon !</div><span class="game-card-reward">⚡ +5 XP / bonne réponse</span></div>
+<div class="game-card" onclick="startGame('brh-challenge')"><div class="game-card-icon">🔨</div><div class="game-card-title">BRH Challenge</div><div class="game-card-desc">Pour cette pelle, quel BRH Montabert ?</div><span class="game-card-reward">⚡ +8 XP / bonne réponse</span></div>
+<div class="game-card" onclick="startGame('marque-modele')"><div class="game-card-icon">🏭</div><div class="game-card-title">Marque & modèle</div><div class="game-card-desc">Ce modèle appartient à quelle marque ?</div><span class="game-card-reward">⚡ +3 XP / bonne réponse</span></div>
+<div class="game-card" onclick="startGame('panne-detective')"><div class="game-card-icon">🕵️</div><div class="game-card-title">Panne Detective</div><div class="game-card-desc">Un symptôme, 4 causes possibles.</div><span class="game-card-reward">⚡ +10 XP / bonne réponse</span></div>
+<div class="game-card" onclick="startGame('prix-juste')"><div class="game-card-icon">💰</div><div class="game-card-title">Le Prix Juste</div><div class="game-card-desc">Estime le prix neuf de cet engin.</div><span class="game-card-reward">⚡ +7 XP / bonne réponse</span></div>
+<div class="game-card" onclick="startGame('caces-flash')"><div class="game-card-icon">🎓</div><div class="game-card-title">CACES Flash</div><div class="game-card-desc">Quelle catégorie pour cet engin ?</div><span class="game-card-reward">⚡ +5 XP / bonne réponse</span></div>
+</div>
+<div class="page" id="page-game-play">
+<div class="back-btn" onclick="showPage('games')">‹ Quitter le jeu</div>
+<div class="game-score-mini"><div class="gsm-item"><div class="gsm-val" id="game-q-num">1</div><div class="gsm-lbl">Q.</div></div><div class="gsm-item"><div class="gsm-val" id="game-good">0</div><div class="gsm-lbl">Réussites</div></div><div class="gsm-item"><div class="gsm-val" id="game-streak">0</div><div class="gsm-lbl">Série</div></div><div class="gsm-item"><div class="gsm-val" id="game-xp">0</div><div class="gsm-lbl">XP</div></div></div>
+<div class="game-screen" id="game-screen-content"></div>
+</div>
+<div class="page" id="page-cours"><div class="section-h">Cours & <span class="gr">fiches</span></div><div class="section-sub">Révision libre par thème.</div><div id="cours-list"></div></div>
+<div class="page" id="page-cours-detail"><div class="back-btn" onclick="showPage('cours')">‹ Retour aux cours</div><div id="cours-detail-content"></div></div>
+<div class="page" id="page-catalogue"><div class="section-h">Catalogue <span class="gr">3B</span></div><div class="section-sub">Engins · prix neuf et occasion.</div><div id="cat-cats-list"></div><div id="cat-machines-list"></div></div>
+<div class="page" id="page-machine-detail"><div class="back-btn" onclick="showPage('catalogue')">‹ Retour au catalogue</div><div id="machine-detail-content"></div></div>
+<div class="page" id="page-pannes"><div class="section-h">Pannes <span class="gr">fréquentes</span></div><div class="section-sub">Diagnostic et solutions par type d'engin.</div><div id="pannes-list"></div></div>
+<div class="page" id="page-pannes-detail"><div class="back-btn" onclick="showPage('pannes')">‹ Retour aux pannes</div><div id="pannes-detail-content"></div></div>
+<div class="page" id="page-stats"><div class="section-h">Mes <span class="gr">statistiques</span></div><div class="section-sub">Suivi de ta progression.</div><div id="stats-content"></div></div>
+<div class="page" id="page-install">
+<div class="section-h">Installer sur <span class="gr">iPhone</span></div>
+<div class="install-card">
+<div class="install-step"><div class="install-step-num">1</div><div class="install-step-txt">Ouvre cette page dans <strong>Safari</strong>.</div></div>
+<div class="install-step"><div class="install-step-num">2</div><div class="install-step-txt">Touche le bouton <strong>Partager</strong> (carré + flèche ↑).</div></div>
+<div class="install-step"><div class="install-step-num">3</div><div class="install-step-txt">Choisis <strong>« Sur l'écran d'accueil »</strong> puis <strong>« Ajouter »</strong>.</div></div>
+</div>
+<div class="info-box"><div class="ib-title">📱 Hors-ligne</div>L'app fonctionne sans connexion. Tes XP sont sauvegardés.</div>
+</div>
 </main>
-
-<!-- BOTTOM NAVIGATION -->
 <nav class="bottom-nav">
-  <div class="bn-item active" data-page="home" onclick="showPage('home')">
-    <div class="bn-icon">🏠</div>Accueil
-  </div>
-  <div class="bn-item" data-page="programme" onclick="showPage('programme')">
-    <div class="bn-icon">📅</div>Programme
-  </div>
-  <div class="bn-item" data-page="qcm" onclick="showPage('qcm')">
-    <div class="bn-icon">🎯</div>QCM
-  </div>
-  <div class="bn-item" data-page="games" onclick="showPage('games')">
-    <div class="bn-icon">🎮</div>Jeux
-  </div>
-  <div class="bn-item" data-page="stats" onclick="showPage('stats')">
-    <div class="bn-icon">📊</div>Stats
-  </div>
+<div class="bn-item active" data-page="home" onclick="showPage('home')"><div class="bn-icon">🏠</div>Accueil</div>
+<div class="bn-item" data-page="programme" onclick="showPage('programme')"><div class="bn-icon">📅</div>Programme</div>
+<div class="bn-item" data-page="qcm" onclick="showPage('qcm')"><div class="bn-icon">🎯</div>QCM</div>
+<div class="bn-item" data-page="games" onclick="showPage('games')"><div class="bn-icon">🎮</div>Jeux</div>
+<div class="bn-item" data-page="stats" onclick="showPage('stats')"><div class="bn-icon">📊</div>Stats</div>
 </nav>
-
 <script>
-// ============================================================================
-// DATA - PRIX, PANNES, QCM (intégrés)
+const ENGINS=[
+{id:'mp08',cat:'mini-pelle',marque:'Yanmar',nom:'SV08',tonnage:0.8,puissance:9,caces:'A',neuf:18000,occ3:12000,occ5:8000,desc:"Mini-pelle ultra-compacte (passages 80cm)."},
+{id:'mp16',cat:'mini-pelle',marque:'Kubota',nom:'KX016-4',tonnage:1.6,puissance:15,caces:'A',neuf:28000,occ3:19000,occ5:13000,desc:"Mini-pelle 1.6T polyvalente."},
+{id:'mp27',cat:'mini-pelle',marque:'Kubota',nom:'U27-4',tonnage:2.7,puissance:20,caces:'A',neuf:42000,occ3:29000,occ5:20000,desc:"Mini-pelle 2.7T à rayon zéro."},
+{id:'mp35',cat:'mini-pelle',marque:'Yanmar',nom:'ViO33',tonnage:3.4,puissance:25,caces:'A',neuf:52000,occ3:36000,occ5:25000,desc:"Mini-pelle 3.5T standard."},
+{id:'mp55',cat:'mini-pelle',marque:'Kubota',nom:'KX057-5',tonnage:5.5,puissance:46,caces:'A',neuf:75000,occ3:52000,occ5:36000,desc:"Mini-pelle 5T avec lame."},
+{id:'mp85',cat:'mini-pelle',marque:'Kubota',nom:'KX080-4',tonnage:8.5,puissance:51,caces:'B1',neuf:95000,occ3:66000,occ5:46000,desc:"Midi-pelle 8T puissante."},
+{id:'pc14',cat:'pelle',marque:'Komatsu',nom:'PC138US-11',tonnage:13.5,puissance:74,caces:'B1',neuf:135000,occ3:94000,occ5:65000,desc:"Pelle 13T à rayon court."},
+{id:'pc20',cat:'pelle',marque:'Caterpillar',nom:'320',tonnage:21,puissance:122,caces:'B1',neuf:185000,occ3:130000,occ5:90000,desc:"Pelle 20T best-seller."},
+{id:'pc25',cat:'pelle',marque:'Volvo',nom:'EC250E',tonnage:25,puissance:150,caces:'B1',neuf:215000,occ3:150000,occ5:105000,desc:"Pelle 25T pour gros terrassement."},
+{id:'pc35',cat:'pelle',marque:'Caterpillar',nom:'336',tonnage:36,puissance:235,caces:'B1',neuf:295000,occ3:210000,occ5:145000,desc:"Pelle 35T pour carrière."},
+{id:'cl05',cat:'chargeuse',marque:'JCB',nom:'403',tonnage:2.5,puissance:35,caces:'C1',neuf:55000,occ3:38000,occ5:26000,desc:"Mini-chargeuse compacte."},
+{id:'cl15',cat:'chargeuse',marque:'Volvo',nom:'L60H',tonnage:11,puissance:120,caces:'C1',neuf:145000,occ3:102000,occ5:71000,desc:"Chargeuse sur pneus 11T."},
+{id:'brh01',cat:'brh',marque:'Montabert',nom:'SC22',tonnage:0.18,puissance:0,caces:'-',neuf:8500,occ3:6000,occ5:4500,desc:"BRH pour mini-pelles 1.5 à 3T."},
+{id:'brh02',cat:'brh',marque:'Montabert',nom:'SC36',tonnage:0.32,puissance:0,caces:'-',neuf:14000,occ3:9800,occ5:7000,desc:"BRH pour mini-pelles 3 à 5T."},
+{id:'brh03',cat:'brh',marque:'Montabert',nom:'SC50',tonnage:0.50,puissance:0,caces:'-',neuf:21000,occ3:14700,occ5:10500,desc:"BRH pour pelles 5 à 9T."},
+{id:'brh04',cat:'brh',marque:'Montabert',nom:'V1600',tonnage:0.80,puissance:0,caces:'-',neuf:28000,occ3:19600,occ5:14000,desc:"BRH pour pelles 10 à 15T."},
+{id:'brh05',cat:'brh',marque:'Montabert',nom:'V2200',tonnage:1.10,puissance:0,caces:'-',neuf:38000,occ3:26600,occ5:19000,desc:"BRH pour pelles 15 à 22T."},
+{id:'brh06',cat:'brh',marque:'Montabert',nom:'V3500',tonnage:1.65,puissance:0,caces:'-',neuf:55000,occ3:38500,occ5:27500,desc:"BRH pour pelles 22 à 32T."},
+{id:'na01',cat:'nacelle',marque:'Haulotte',nom:'Compact 12',tonnage:2.5,puissance:12,caces:'B',neuf:32000,occ3:22000,occ5:15000,desc:"Nacelle ciseaux électrique 12m."},
+{id:'na02',cat:'nacelle',marque:'JLG',nom:'600AJ',tonnage:7.2,puissance:20,caces:'B',neuf:95000,occ3:67000,occ5:46000,desc:"Nacelle articulée diesel 20m."},
+{id:'co01',cat:'compacteur',marque:'Bomag',nom:'BW120AD-5',tonnage:2.7,puissance:24,caces:'D',neuf:42000,occ3:29000,occ5:20000,desc:"Compacteur tandem 1.2m."},
+{id:'co02',cat:'compacteur',marque:'Hamm',nom:'HD12VV',tonnage:2.5,puissance:24,caces:'D',neuf:38000,occ3:26000,occ5:18000,desc:"Mini-compacteur tandem."}
+];
+const CATS={'mini-pelle':{nom:'Mini-pelles',icon:'🚜'},'pelle':{nom:'Pelles',icon:'🏗️'},'chargeuse':{nom:'Chargeuses',icon:'🚛'},'brh':{nom:'BRH Montabert',icon:'🔨'},'nacelle':{nom:'Nacelles',icon:'🪜'},'compacteur':{nom:'Compacteurs',icon:'🛞'}};
+const PANNES=[
+{id:'p1',engin:'Pelle/Mini-pelle',symptome:"La pelle ne démarre pas",grav:'CRITIQUE',causes:["Batterie déchargée ou HS","Démarreur défectueux","Filtre à carburant bouché","Coupe-circuit sur OFF"],solutions:["Vérifier tension batterie (>12V)","Remplacer batterie","Changer filtre à gasoil","Remettre coupe-circuit sur ON"]},
+{id:'p2',engin:'Pelle/Mini-pelle',symptome:"Perte de puissance hydraulique",grav:'ELEVEE',causes:["Niveau d'huile bas","Filtre colmaté","Pompe en fin de vie","Fuite sur vérin"],solutions:["Compléter le niveau","Changer le filtre","Diagnostic atelier","Inspecter vérins"]},
+{id:'p3',engin:'Pelle/Mini-pelle',symptome:"L'engin chauffe",grav:'CRITIQUE',causes:["Manque de liquide refroidissement","Radiateur encrassé","Ventilateur HS","Thermostat bloqué"],solutions:["Compléter le circuit","Souffler le radiateur","Vérifier ventilateur","Remplacer thermostat"]},
+{id:'p4',engin:'BRH',symptome:"Le BRH ne frappe pas",grav:'ELEVEE',causes:["Pression hydraulique faible","Pic usé ou cassé","Membrane d'azote dégonflée","Distributeur grippé"],solutions:["Vérifier pression","Remplacer le pic","Recharger l'azote","Démontage atelier"]},
+{id:'p5',engin:'BRH',symptome:"Le BRH frappe faiblement",grav:'MOYENNE',causes:["Pression d'azote basse","Débit huile insuffisant","Usure interne"],solutions:["Recharger azote","Vérifier débit pompe","Révision atelier"]},
+{id:'p6',engin:'Chargeuse',symptome:"Direction dure",grav:'MOYENNE',causes:["Niveau huile direction bas","Pompe usée","Articulations sèches"],solutions:["Compléter huile","Diagnostic pompe","Graisser articulations"]},
+{id:'p7',engin:'Nacelle',symptome:"La nacelle ne monte plus",grav:'CRITIQUE',causes:["Batterie déchargée","Détecteur de devers","Arrêt d'urgence","Niveau huile bas"],solutions:["Charger 8h","Repositionner sur sol plat","Déverrouiller","Compléter huile"]},
+{id:'p8',engin:'Nacelle',symptome:"Alarme devers en continu",grav:'CRITIQUE',causes:["Sol non plan","Capteur déréglé","Stabilisateurs non sortis"],solutions:["Repositionner","Calibrer capteur","Sortir stabilisateurs"]},
+{id:'p9',engin:'Compacteur',symptome:"Pas de vibration",grav:'ELEVEE',causes:["Sélecteur sur OFF","Embrayage HS","Roulements usés"],solutions:["Activer vibration","Diagnostic atelier","Remplacement"]},
+{id:'p10',engin:'Tous engins',symptome:"Voyant moteur allumé",grav:'ELEVEE',causes:["FAP saturé","AdBlue bas","Capteur HS","Code défaut"],solutions:["Régénération forcée","Compléter AdBlue","Diagnostic OBD","Lecture codes"]},
+{id:'p11',engin:'Tous engins',symptome:"Fuite d'huile visible",grav:'ELEVEE',causes:["Flexible percé","Joint vérin HS","Raccord desserré"],solutions:["Remplacer flexible","Réfection atelier","Resserrer raccord"]},
+{id:'p12',engin:'Tous engins',symptome:"Chenille déraillée",grav:'CRITIQUE',causes:["Tension trop basse","Galet ou barbotin usé","Choc latéral"],solutions:["Re-tendre","Diagnostic train","Remontage atelier"]}
+];
+const QCM={
+'engins':{nom:'Connaissance des engins',icon:'🚜',questions:[
+{q:"Quelle catégorie CACES pour une mini-pelle de moins de 6T ?",o:["A","B1","C1","R482"],r:0,exp:"Catégorie A : engins compacts < 6T."},
+{q:"Le tonnage d'une pelle 'midi' se situe entre :",o:["1 et 5 T","6 et 10 T","11 et 18 T","19 et 30 T"],r:1,exp:"Les midi-pelles : 6 à 10 tonnes."},
+{q:"Que signifie 'USR' sur une pelle ?",o:["Ultra Speed Rotation","Ultra Short Radius","Universal Steel Reach","Under Surface Roller"],r:1,exp:"USR = rayon arrière ultra court."},
+{q:"Quelle marque produit la mini-pelle ViO33 ?",o:["Kubota","JCB","Yanmar","Komatsu"],r:2,exp:"La gamme ViO est de Yanmar."},
+{q:"À quoi sert un skid-steer ?",o:["Terrassement profond","Déplacement de matériaux en zone restreinte","Compactage","Levage en hauteur"],r:1,exp:"Le skid-steer est polyvalent en zone exiguë."},
+{q:"Le tonnage d'une Cat 320 est d'environ :",o:["12 T","20 T","25 T","30 T"],r:1,exp:"La Cat 320 = 20T."},
+{q:"CACES pour une chargeuse sur pneus ?",o:["A","B1","C1","D"],r:2,exp:"C1 = chargeuses sur pneus."},
+{q:"Fonction principale d'un compacteur tandem ?",o:["Creuser","Niveler","Compacter enrobé","Transporter"],r:2,exp:"Le tandem compacte les couches d'enrobé."},
+{q:"Quelle marque produit la EC250E ?",o:["Caterpillar","Komatsu","Volvo CE","Hitachi"],r:2,exp:"EC = Volvo Construction Equipment."},
+{q:"Une nacelle articulée diesel = CACES :",o:["A","B","D","R486"],r:1,exp:"Catégorie B : PEMP multidirectionnelle."}
+]},
+'brh':{nom:'BRH Montabert',icon:'🔨',questions:[
+{q:"Quel BRH pour une mini-pelle de 3T ?",o:["SC22","SC36","SC50","V1600"],r:0,exp:"SC22 (180kg) pour 1.5 à 3T."},
+{q:"Pour une pelle 20T (Cat 320), quel BRH ?",o:["SC50","V1600","V2200","V3500"],r:2,exp:"V2200 (1100kg) pour 15 à 22T."},
+{q:"Que signifie BRH ?",o:["Brise-Roche Hydraulique","Bras Rotatif Hybride","Broyeur Roche","Bloc Régulateur"],r:0,exp:"BRH = Brise-Roche Hydraulique."},
+{q:"Avant d'utiliser un BRH, vérifier :",o:["Niveau huile moteur","Pression d'azote","Pression pneus","AdBlue"],r:1,exp:"L'azote doit être à la pression constructeur."},
+{q:"Quelle marque iconique de BRH 3B propose ?",o:["Atlas Copco","Indeco","Montabert","NPK"],r:2,exp:"3B = partenaire historique Montabert."},
+{q:"Pour une pelle 30T, quel BRH ?",o:["V2200","V3500","SC50","V1600"],r:1,exp:"V3500 (1650kg) pour 22 à 32T."},
+{q:"Le pic d'un BRH doit être :",o:["Toujours pointu","Adapté au matériau","Plat","Aluminium"],r:1,exp:"Pic moiné pour roche, burin pour béton."},
+{q:"Durée de vie moyenne d'un pic ?",o:["20-50h","100-300h","500-800h","Plus de 1000h"],r:1,exp:"100 à 300 h selon usage."},
+{q:"Que se passe-t-il si on tape à vide ?",o:["Rien","Casse rapide du BRH","Plus de puissance","Moins de carburant"],r:1,exp:"Frapper à vide casse le BRH."},
+{q:"Le SC36 Montabert pèse environ :",o:["180 kg","320 kg","500 kg","800 kg"],r:1,exp:"SC36 = 320 kg."}
+]},
+'pannes':{nom:'Pannes & diagnostic',icon:'🔧',questions:[
+{q:"Pelle ne démarre pas. Premier test ?",o:["Filtre gasoil","Tester batterie","Démarreur","Vidange"],r:1,exp:"Toujours le plus simple : batterie."},
+{q:"Voyant moteur allumé. Cause fréquente ?",o:["AdBlue manquant","Pneu crevé","Batterie OK","Huile neuve"],r:0,exp:"Engins Stage V : AdBlue déclenche un voyant."},
+{q:"Une chenille déraille. Action ?",o:["Continuer","Stopper et appeler atelier","Re-rouler","Mettre du sable"],r:1,exp:"Atelier obligatoire."},
+{q:"Fuite d'huile sous la pelle. Action ?",o:["Continuer","Compléter et finir","Stopper","Augmenter régime"],r:2,exp:"Le circuit peut se vider en quelques minutes."},
+{q:"BRH frappe faiblement. Cause ?",o:["Azote bas","Batterie","Carburant","AdBlue"],r:0,exp:"L'azote = clé de la frappe."},
+{q:"Nacelle alarme devers. Action ?",o:["Désactiver","Repositionner sol plat","Continuer","Caler"],r:1,exp:"Capteur de sécurité vital."},
+{q:"Moteur chauffe. Premier check ?",o:["Liquide refroidissement","Pneus","Filtre air","Chenille"],r:0,exp:"Manque de liquide = cause n°1."},
+{q:"Pression d'azote BRH Montabert ?",o:["1-3 bars","6-10 bars","15-18 bars","30-40 bars"],r:2,exp:"15 à 18 bars."},
+{q:"Perte hydraulique. Premier réflexe ?",o:["Niveau huile hydra","Batterie","AdBlue","Pneus"],r:0,exp:"Niveau et filtre hydraulique."},
+{q:"Que signifie 'FAP' ?",o:["Filtre Air Premium","Filtre à Particules","Frein Auto","Force Auxiliaire"],r:1,exp:"FAP = Filtre à Particules."}
+]},
+'prix':{nom:'Prix & marché',icon:'💰',questions:[
+{q:"Prix neuf mini-pelle Kubota 1.6T ?",o:["15 000 €","28 000 €","45 000 €","60 000 €"],r:1,exp:"KX016-4 : ~28 000 €."},
+{q:"Cat 320 (20T) neuve coûte :",o:["95 000 €","135 000 €","185 000 €","250 000 €"],r:2,exp:"180-200 000 €."},
+{q:"Décote d'un engin BTP à 3 ans :",o:["10%","20%","30%","50%"],r:2,exp:"~30% à 3 ans."},
+{q:"BRH Montabert SC50 neuf :",o:["8 000 €","21 000 €","45 000 €","75 000 €"],r:1,exp:"SC50 : ~21 000 €."},
+{q:"Location mensuelle pelle 20T :",o:["1 500 €","4 000 €","8 000 €","15 000 €"],r:1,exp:"3 500 à 4 500 €/mois."},
+{q:"Décote à 5 ans :",o:["20%","35%","50%","70%"],r:2,exp:"~50% à 5 ans."},
+{q:"Mini-pelle 3T occasion 3 ans :",o:["15 000 €","35 000 €","55 000 €","75 000 €"],r:1,exp:"30 à 38 000 €."},
+{q:"Nacelle 20m diesel neuve :",o:["35 000 €","65 000 €","95 000 €","150 000 €"],r:2,exp:"~95 000 €."},
+{q:"Critère le plus important pour une occasion :",o:["Couleur","Heures","Marque seule","Année seule"],r:1,exp:"Heures + entretien + état."},
+{q:"Seuil d'heures critique :",o:["1 000h","3 000h","5 000h","10 000h"],r:2,exp:"Au-delà de 5000h, décote forte."}
+]},
+'caces':{nom:'CACES & sécurité',icon:'🎓',questions:[
+{q:"Le CACES est obligatoire pour :",o:["Tout engin de chantier","Engins > 5T","Engins en location","Télécommandés"],r:0,exp:"R482 obligatoire pour tout engin."},
+{q:"Validité du CACES R482 ?",o:["3 ans","5 ans","10 ans","À vie"],r:2,exp:"R482 : 10 ans."},
+{q:"Catégorie A R482 :",o:["Compacts < 6T","Pelles > 6T","Tombereaux","Nacelles"],r:0,exp:"A = compacts < 6T."},
+{q:"Catégorie B1 R482 :",o:["Mini-pelles","Pelles > 6T","Chargeuses","Compacteurs"],r:1,exp:"B1 = pelles > 6T."},
+{q:"Catégorie C1 R482 :",o:["Compacteurs","Chargeuses pelleteuses","Chargeuses sur pneus","Tombereaux"],r:2,exp:"C1 = chargeuses sur pneus."},
+{q:"Avant chaque prise de poste :",o:["Plein","VGP annuelle","Tour de l'engin","Vidange"],r:2,exp:"Tour de l'engin obligatoire."},
+{q:"VGP signifie :",o:["Vérification Générale Périodique","Visite Globale","Validation Production","Vérification Garantie"],r:0,exp:"VGP = annuelle pour engins de levage."},
+{q:"EPI obligatoire en cabine :",o:["Casque","Ceinture sécurité","Gants","Lunettes"],r:1,exp:"Ceinture = anti-renversement ROPS."},
+{q:"En cas de renversement :",o:["Sauter","Rester ceinturé","Ouvrir portière","Couper moteur"],r:1,exp:"Toujours rester ceinturé."},
+{q:"Distance de sécurité par rapport à une fouille :",o:["10 cm","50 cm","Égale à la profondeur","2 mètres"],r:2,exp:"Recul = profondeur de fouille."}
+]}
+};
+const PROGRAMME=[
+{j:1,t:"Découverte des mini-pelles",o:"Comprendre la gamme < 6T",theme:'engins'},
+{j:2,t:"Pelles standards 13T à 25T",o:"Pelles intermédiaires",theme:'engins'},
+{j:3,t:"Grosses pelles 30T+",o:"Engins de carrière",theme:'engins'},
+{j:4,t:"Chargeuses",o:"Skid-steer et chargeuses",theme:'engins'},
+{j:5,t:"Nacelles élévatrices",o:"Ciseaux, articulées",theme:'engins'},
+{j:6,t:"Compacteurs",o:"Tandems et monocylindres",theme:'engins'},
+{j:7,t:"Récap semaine 1",o:"QCM bilan engins",theme:'engins'},
+{j:8,t:"BRH : intro Montabert",o:"Histoire et gamme SC",theme:'brh'},
+{j:9,t:"BRH : gamme V",o:"V1600, V2200, V3500",theme:'brh'},
+{j:10,t:"Choisir le bon BRH",o:"Adéquation pelle/BRH",theme:'brh'},
+{j:11,t:"Maintenance BRH",o:"Azote, pic, joints",theme:'brh'},
+{j:12,t:"Pannes BRH",o:"Diagnostic et solutions",theme:'pannes'},
+{j:13,t:"Pannes pelles",o:"Démarrage, hydraulique",theme:'pannes'},
+{j:14,t:"Récap semaine 2",o:"QCM BRH + pannes",theme:'brh'},
+{j:15,t:"CACES R482",o:"Catégories",theme:'caces'},
+{j:16,t:"Sécurité chantier",o:"EPI, VGP, balisage",theme:'caces'},
+{j:17,t:"Prise de poste",o:"Tour de l'engin",theme:'caces'},
+{j:18,t:"Pannes nacelles",o:"Devers, batterie",theme:'pannes'},
+{j:19,t:"Pannes compacteurs",o:"Vibration, transmission",theme:'pannes'},
+{j:20,t:"Codes défaut",o:"OBD, valise diagnostic",theme:'pannes'},
+{j:21,t:"Récap semaine 3",o:"QCM pannes + sécurité",theme:'pannes'},
+{j:22,t:"Marché occasion",o:"Critères de cotation",theme:'prix'},
+{j:23,t:"Prix mini-pelles",o:"De 18 à 95 000 €",theme:'prix'},
+{j:24,t:"Prix pelles",o:"De 135 à 295 000 €",theme:'prix'},
+{j:25,t:"Prix BRH Montabert",o:"De 8 500 à 55 000 €",theme:'prix'},
+{j:26,t:"Tarifs location",o:"Estimer un loyer",theme:'prix'},
+{j:27,t:"Décote et heures",o:"Évaluer une occasion",theme:'prix'},
+{j:28,t:"Récap semaine 4",o:"QCM prix",theme:'prix'},
+{j:29,t:"Examen blanc",o:"30 questions tous thèmes",theme:'engins'},
+{j:30,t:"Examen final",o:"Maîtrise totale",theme:'engins'}
+];
+const COURS=[
+{id:'c1',titre:'Les mini-pelles',icon:'🚜',sections:[
+{h:"Définition",p:"Engin < 6 tonnes sur chenilles caoutchouc. Star des chantiers urbains."},
+{h:"Gamme tonnage",p:"De 0.8T (Yanmar SV08) à 5.5T (Kubota KX057). La 3T (ViO33) est la plus louée."},
+{h:"Marques",p:"Kubota et Yanmar dominent. JCB, Bobcat, Volvo aussi."},
+{h:"CACES",p:"Catégorie A du R482."}
+]},
+{id:'c2',titre:'BRH Montabert',icon:'🔨',sections:[
+{h:"BRH ?",p:"Brise-Roche Hydraulique. Marteau monté sur bras de pelle. Casse béton, roche, enrobé."},
+{h:"Gamme SC",p:"SC22 (180kg) pour 1.5-3T, SC36 (320kg) pour 3-5T, SC50 (500kg) pour 5-9T."},
+{h:"Gamme V",p:"V1600 (800kg) pour 10-15T, V2200 (1100kg) pour 15-22T, V3500 (1650kg) pour 22-32T."},
+{h:"Maintenance",p:"Recharger azote tous les 6 mois (15-18 bars). Graisser le pic toutes les 2h. Ne jamais frapper à vide."}
+]},
+{id:'c3',titre:'Pannes courantes',icon:'🔧',sections:[
+{h:"Démarrage",p:"90% des cas : batterie. Tester tension (>12V), inspecter cosses."},
+{h:"Surchauffe",p:"Vérifier liquide refroidissement, souffler radiateur, contrôler ventilateur."},
+{h:"Hydraulique",p:"Niveau bas + filtre colmaté = causes n°1. Sinon suspecter la pompe."},
+{h:"BRH faible",p:"Azote bas (recharger), débit insuffisant, ou usure interne."}
+]},
+{id:'c4',titre:'CACES R482',icon:'🎓',sections:[
+{h:"Catégories",p:"A : compacts < 6T. B1 : pelles > 6T. C1 : chargeuses sur pneus. D : compacteurs. E : tombereaux."},
+{h:"Validité",p:"R482 valable 10 ans. Recyclage ensuite."},
+{h:"VGP",p:"Vérification Générale Périodique annuelle pour engins de levage."},
+{h:"EPI",p:"Casque, chaussures, gilet HV, gants. En cabine : ceinture (ROPS)."}
+]},
+{id:'c5',titre:'Prix & marché',icon:'💰',sections:[
+{h:"Décote",p:"3 ans : -30%. 5 ans : -50%. 10 ans : -75%."},
+{h:"Heures",p:"Mini-pelle : 4000h = mi-vie. Pelle 20T : 8000h = mi-vie."},
+{h:"Location",p:"Mini-pelle 3T : 1200-1500 €/mois. Pelle 20T : 3500-4500 €/mois."},
+{h:"Évaluation",p:"Heures + entretien + état + pneus/chenilles + cabine."}
+]}
+];
+let STATE={xp:0,streak:0,lastVisit:null,currentDay:1,daysDone:[],qcmCount:0,qcmGood:0,qcmTotal:0,themeStats:{}};
+function loadState(){try{const r=localStorage.getItem('3b_academy_v1');if(r)STATE=Object.assign(STATE,JSON.parse(r));}catch(e){}}
+function saveState(){try{localStorage.setItem('3b_academy_v1',JSON.stringify(STATE));}catch(e){}}
+function addXP(n){STATE.xp+=n;saveState();refreshHeader();}
+function refreshHeader(){document.getElementById('xp-val').textContent=STATE.xp;document.getElementById('streak-val').textContent=STATE.streak;}
+function checkStreak(){const today=new Date().toDateString();if(STATE.lastVisit!==today){const yest=new Date(Date.now()-86400000).toDateString();if(STATE.lastVisit===yest)STATE.streak++;else STATE.streak=1;STATE.lastVisit=today;saveState();}}
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));const t=document.getElementById('page-'+id);if(t)t.classList.add('active');document.querySelectorAll('.bn-item').forEach(b=>b.classList.remove('active'));const n=document.querySelector('.bn-item[data-page="'+id+'"]');if(n)n.classList.add('active');window.scrollTo(0,0);if(id==='home')refreshHome();if(id==='programme')renderProgramme();if(id==='qcm')renderQCMThemes();if(id==='cours')renderCours();if(id==='catalogue')renderCatalogue();if(id==='pannes')renderPannes();if(id==='stats')renderStats();}
+function toast(m){const t=document.createElement('div');t.className='toast';t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),3000);}
+function refreshHome(){const h=new Date().getHours();let g='Bonjour !';if(h>=12&&h<18)g='Bon après-midi !';else if(h>=18)g='Bonsoir !';document.getElementById('greet-msg').textContent=g;document.getElementById('home-jour').textContent=STATE.currentDay;document.getElementById('home-qcm').textContent=STATE.qcmCount;const p=STATE.qcmTotal>0?Math.round((STATE.qcmGood/STATE.qcmTotal)*100):0;document.getElementById('home-pct').textContent=p+'%';const d=PROGRAMME[STATE.currentDay-1];if(d){document.getElementById('today-title').textContent="Jour "+d.j+" : "+d.t;document.getElementById('today-desc').textContent=d.o;}}
+function goToCurrentDay(){showJour(STATE.currentDay);}
+function renderProgramme(){const el=document.getElementById('prog-list');el.innerHTML=PROGRAMME.map(d=>{const done=STATE.daysDone.includes(d.j);const cur=d.j===STATE.currentDay;const c=done?'done':(cur?'current':'');const s=done?'✅':(cur?'▶️':'');return '<div class="day-card '+c+'" onclick="showJour('+d.j+')"><div class="day-num">'+d.j+'</div><div class="day-info"><div class="day-titre">'+d.t+'</div><div class="day-obj">'+d.o+'</div></div><div class="day-status">'+s+'</div></div>';}).join('');}
+function showJour(n){const d=PROGRAMME[n-1];if(!d)return;document.getElementById('jour-content').innerHTML='<div class="lesson-content"><div class="lesson-title">Jour '+d.j+' : '+d.t+'</div><div class="info-box"><div class="ib-title">🎯 Objectif</div>'+d.o+'</div><p style="color:var(--gray);margin:14px 0;font-size:13px">Fais le QCM thématique pour valider ce jour.</p><button class="btn" onclick="startQCM(\''+d.theme+'\','+d.j+')">Démarrer le QCM</button><div style="height:10px"></div><button class="btn-ghost" onclick="markDayDone('+d.j+')">Marquer comme fait</button></div>';showPage('jour');}
+function markDayDone(j){if(!STATE.daysDone.includes(j)){STATE.daysDone.push(j);if(j===STATE.currentDay&&STATE.currentDay<30)STATE.currentDay++;addXP(5);saveState();toast('Jour '+j+' validé ! +5 XP');}showPage('programme');}
+let qcmCurrent=null,qcmIndex=0,qcmScore=0,qcmDayId=null;
+function renderQCMThemes(){const el=document.getElementById('qcm-themes-list');el.innerHTML=Object.keys(QCM).map(k=>{const t=QCM[k];return '<div class="card" onclick="startQCM(\''+k+'\')"><div class="card-row"><div class="card-icon">'+t.icon+'</div><div class="card-body"><div class="card-title">'+t.nom+'</div><div class="card-desc">'+t.questions.length+' questions</div></div><div class="card-arrow">›</div></div></div>';}).join('');}
+function shuffle(a){return a.slice().sort(()=>Math.random()-0.5);}
+function pickRandom(a,n){return shuffle(a).slice(0,n);}
+function startQCM(k,d){qcmCurrent={theme:k,questions:shuffle(QCM[k].questions.slice())};qcmIndex=0;qcmScore=0;qcmDayId=d||null;showPage('qcm-game');showQuestion();}
+function showQuestion(){const q=qcmCurrent.questions[qcmIndex];document.getElementById('qcm-theme').textContent=QCM[qcmCurrent.theme].nom;document.getElementById('qcm-question').textContent=q.q;document.getElementById('qcm-counter').textContent="Question "+(qcmIndex+1)+"/"+qcmCurrent.questions.length;document.getElementById('qcm-score-live').textContent="Score: "+qcmScore;document.getElementById('qcm-prog-fill').style.width=((qcmIndex/qcmCurrent.questions.length)*100)+'%';document.getElementById('qcm-feedback').className='qcm-feedback';document.getElementById('qcm-next-btn').classList.add('hidden');const opts=document.getElementById('qcm-options');const letters=['A','B','C','D'];opts.innerHTML=q.o.map((opt,i)=>'<div class="qcm-option" onclick="answerQCM('+i+')"><div class="opt-letter">'+letters[i]+'</div><div>'+opt+'</div></div>').join('');}
+function answerQCM(i){const q=qcmCurrent.questions[qcmIndex];const opts=document.querySelectorAll('#qcm-options .qcm-option');opts.forEach((o,idx)=>{o.classList.add('disabled');o.onclick=null;if(idx===q.r)o.classList.add('correct');else if(idx===i)o.classList.add('wrong');});const fb=document.getElementById('qcm-feedback');if(i===q.r){qcmScore++;fb.className='qcm-feedback correct-fb show';fb.innerHTML='✅ <strong>Bonne réponse !</strong><br>'+q.exp;}else{fb.className='qcm-feedback wrong-fb show';fb.innerHTML='❌ <strong>Mauvaise réponse.</strong><br>'+q.exp;}document.getElementById('qcm-score-live').textContent="Score: "+qcmScore;document.getElementById('qcm-next-btn').classList.remove('hidden');}
+function nextQuestion(){qcmIndex++;if(qcmIndex>=qcmCurrent.questions.length)endQCM();else showQuestion();}
+function endQCM(){const total=qcmCurrent.questions.length;const pct=Math.round((qcmScore/total)*100);const xp=qcmScore*3;STATE.qcmCount++;STATE.qcmGood+=qcmScore;STATE.qcmTotal+=total;if(!STATE.themeStats[qcmCurrent.theme])STATE.themeStats[qcmCurrent.theme]={good:0,total:0};STATE.themeStats[qcmCurrent.theme].good+=qcmScore;STATE.themeStats[qcmCurrent.theme].total+=total;addXP(xp);if(qcmDayId&&pct>=70&&!STATE.daysDone.includes(qcmDayId)){STATE.daysDone.push(qcmDayId);if(qcmDayId===STATE.currentDay&&STATE.currentDay<30)STATE.currentDay++;saveState();}let e='😅',m="Continue !";if(pct>=90){e='🏆';m="Excellent !";}else if(pct>=70){e='👏';m="Très bien !";}else if(pct>=50){e='👍';m="Pas mal !";}document.getElementById('result-emoji').textContent=e;document.getElementById('result-score').textContent=qcmScore+"/"+total;document.getElementById('result-msg').textContent=m;document.getElementById('result-xp').textContent="+"+xp+" XP";showPage('qcm-result');}
+function restartQCM(){if(qcmCurrent)startQCM(qcmCurrent.theme,qcmDayId);}
+let gameState=null;
+function startGame(type){gameState={type,qNum:1,good:0,streak:0,xp:0,total:10};document.getElementById('game-q-num').textContent='1';document.getElementById('game-good').textContent='0';document.getElementById('game-streak').textContent='0';document.getElementById('game-xp').textContent='0';showPage('game-play');renderGameQuestion();}
+function renderGameQuestion(){if(gameState.qNum>gameState.total)return endGame();document.getElementById('game-q-num').textContent=gameState.qNum;let h='';if(gameState.type==='devine-engin')h=renderDevineEngin();else if(gameState.type==='brh-challenge')h=renderBrhChallenge();else if(gameState.type==='marque-modele')h=renderMarqueModele();else if(gameState.type==='panne-detective')h=renderPanneDetective();else if(gameState.type==='prix-juste')h=renderPrixJuste();else if(gameState.type==='caces-flash')h=renderCacesFlash();document.getElementById('game-screen-content').innerHTML=h;}
+function gameAnswer(ok,btn,cIdx){const tiles=document.querySelectorAll('#game-screen-content .game-tile');tiles.forEach((t,i)=>{t.classList.add('disabled');t.onclick=null;if(i===cIdx)t.classList.add('correct');else if(t===btn&&!ok)t.classList.add('wrong');});if(ok){gameState.good++;gameState.streak++;const xpMap={'devine-engin':5,'brh-challenge':8,'marque-modele':3,'panne-detective':10,'prix-juste':7,'caces-flash':5};gameState.xp+=xpMap[gameState.type]||5;}else gameState.streak=0;document.getElementById('game-good').textContent=gameState.good;document.getElementById('game-streak').textContent=gameState.streak;document.getElementById('game-xp').textContent=gameState.xp;setTimeout(()=>{gameState.qNum++;renderGameQuestion();},1500);}
+function endGame(){addXP(gameState.xp);const pct=Math.round((gameState.good/gameState.total)*100);let e='🎮',m="Bien joué !";if(pct>=90){e='🏆';m="Score parfait !";}else if(pct>=70){e='🎯';m="Très bon score !";}else if(pct<50){e='💪';m="Recommence !";}document.getElementById('game-screen-content').innerHTML='<div style="text-align:center;padding:20px"><div style="font-size:64px">'+e+'</div><div class="result-score">'+gameState.good+'/'+gameState.total+'</div><div class="result-msg">'+m+'</div><div class="xp-gained">+'+gameState.xp+' XP</div><div style="height:14px"></div><button class="btn" onclick="startGame(\''+gameState.type+'\')">Rejouer</button><div style="height:8px"></div><button class="btn-ghost" onclick="showPage(\'games\')">Autre jeu</button></div>';}
+function renderDevineEngin(){const cand=ENGINS.filter(e=>e.cat!=='brh');const cor=cand[Math.floor(Math.random()*cand.length)];const oth=pickRandom(cand.filter(e=>e.id!==cor.id),3);const ch=shuffle([cor,...oth]);const cIdx=ch.findIndex(c=>c.id===cor.id);return '<div class="game-question">'+cor.desc+'</div><div class="game-grid">'+ch.map((c,i)=>'<div class="game-tile" onclick="gameAnswer('+(i===cIdx)+',this,'+cIdx+')"><span class="game-tile-icon">'+(CATS[c.cat]?CATS[c.cat].icon:'🚜')+'</span>'+c.marque+' '+c.nom+'</div>').join('')+'</div>';}
+function renderBrhChallenge(){const pelles=ENGINS.filter(e=>e.cat==='pelle'||e.cat==='mini-pelle');const p=pelles[Math.floor(Math.random()*pelles.length)];const brhs=ENGINS.filter(e=>e.cat==='brh');let g;if(p.tonnage<=3)g=brhs.find(b=>b.nom==='SC22');else if(p.tonnage<=5)g=brhs.find(b=>b.nom==='SC36');else if(p.tonnage<=9)g=brhs.find(b=>b.nom==='SC50');else if(p.tonnage<=15)g=brhs.find(b=>b.nom==='V1600');else if(p.tonnage<=22)g=brhs.find(b=>b.nom==='V2200');else g=brhs.find(b=>b.nom==='V3500');const oth=pickRandom(brhs.filter(b=>b.id!==g.id),3);const ch=shuffle([g,...oth]);const cIdx=ch.findIndex(c=>c.id===g.id);return '<div class="game-question">Quel BRH pour <strong style="color:var(--green)">'+p.marque+' '+p.nom+' ('+p.tonnage+'T)</strong> ?</div><div class="game-grid">'+ch.map((c,i)=>'<div class="game-tile" onclick="gameAnswer('+(i===cIdx)+',this,'+cIdx+')"><span class="game-tile-icon">🔨</span>'+c.nom+'</div>').join('')+'</div>';}
+function renderMarqueModele(){const e=ENGINS[Math.floor(Math.random()*ENGINS.length)];const marques=['Kubota','Yanmar','Caterpillar','Komatsu','Volvo','JCB','Bobcat','Hitachi','Montabert','Bomag','Hamm','Haulotte','JLG'];const oth=pickRandom(marques.filter(m=>m!==e.marque),3);const ch=shuffle([e.marque,...oth]);const cIdx=ch.indexOf(e.marque);return '<div class="game-question">Le modèle <strong style="color:var(--green)">'+e.nom+'</strong> appartient à quelle marque ?</div><div class="game-grid">'+ch.map((c,i)=>'<div class="game-tile" onclick="gameAnswer('+(i===cIdx)+',this,'+cIdx+')"><span class="game-tile-icon">🏭</span>'+c+'</div>').join('')+'</div>';}
+function renderPanneDetective(){const p=PANNES[Math.floor(Math.random()*PANNES.length)];const g=p.causes[0];const oth=pickRandom(PANNES.filter(x=>x.id!==p.id),3).map(x=>x.causes[0]);const ch=shuffle([g,...oth]);const cIdx=ch.indexOf(g);return '<div class="game-question">Symptôme : <strong style="color:var(--orange)">'+p.symptome+'</strong><br><small style="color:var(--gray);font-size:13px">('+p.engin+')</small><br><br>Cause la plus probable ?</div><div class="game-grid">'+ch.map((c,i)=>'<div class="game-tile" style="font-size:12px;text-align:left;padding:14px" onclick="gameAnswer('+(i===cIdx)+',this,'+cIdx+')">'+c+'</div>').join('')+'</div>';}
+function renderPrixJuste(){const e=ENGINS[Math.floor(Math.random()*ENGINS.length)];function f(p,m){const l=Math.round(p*(1-m)/1000)*1000;const h=Math.round(p*(1+m)/1000)*1000;return l.toLocaleString('fr')+' € - '+h.toLocaleString('fr')+' €';}const g=f(e.neuf,0.15);const offs=[0.5,-0.4,0.8].sort(()=>Math.random()-0.5);const wrs=offs.map(o=>f(e.neuf*(1+o),0.15));const ch=shuffle([g,...wrs]);const cIdx=ch.indexOf(g);return '<div class="game-question">Prix neuf de <strong style="color:var(--green)">'+e.marque+' '+e.nom+'</strong> ?</div><div class="game-grid">'+ch.map((c,i)=>'<div class="game-tile" onclick="gameAnswer('+(i===cIdx)+',this,'+cIdx+')"><span class="game-tile-icon">💰</span>'+c+'</div>').join('')+'</div>';}
+function renderCacesFlash(){const list=ENGINS.filter(x=>x.caces!=='-');const e=list[Math.floor(Math.random()*list.length)];const cats=['A','B1','C1','D','B','E'];const oth=pickRandom(cats.filter(c=>c!==e.caces),3);const ch=shuffle([e.caces,...oth]);const cIdx=ch.indexOf(e.caces);return '<div class="game-question">Quel CACES pour <strong style="color:var(--green)">'+e.marque+' '+e.nom+' ('+e.tonnage+'T)</strong> ?</div><div class="game-grid">'+ch.map((c,i)=>'<div class="game-tile" onclick="gameAnswer('+(i===cIdx)+',this,'+cIdx+')"><span class="game-tile-icon">🎓</span>Catégorie '+c+'</div>').join('')+'</div>';}
+function renderCours(){document.getElementById('cours-list').innerHTML=COURS.map(c=>'<div class="card" onclick="showCoursDetail(\''+c.id+'\')"><div class="card-row"><div class="card-icon">'+c.icon+'</div><div class="card-body"><div class="card-title">'+c.titre+'</div><div class="card-desc">'+c.sections.length+' sections</div></div><div class="card-arrow">›</div></div></div>').join('');}
+function showCoursDetail(id){const c=COURS.find(x=>x.id===id);if(!c)return;document.getElementById('cours-detail-content').innerHTML='<div class="lesson-content"><div class="lesson-title">'+c.icon+' '+c.titre+'</div>'+c.sections.map(s=>'<div class="lesson-section"><h3>'+s.h+'</h3><p>'+s.p+'</p></div>').join('')+'</div>';showPage('cours-detail');}
+let catFilter='all';
+function renderCatalogue(){document.getElementById('cat-cats-list').innerHTML='<div style="margin-bottom:14px"><span class="cat-btn '+(catFilter==='all'?'active':'')+'" onclick="filterCat(\'all\')">Tous</span>'+Object.keys(CATS).map(k=>'<span class="cat-btn '+(catFilter===k?'active':'')+'" onclick="filterCat(\''+k+'\')">'+CATS[k].icon+' '+CATS[k].nom+'</span>').join('')+'</div>';const f=catFilter==='all'?ENGINS:ENGINS.filter(e=>e.cat===catFilter);document.getElementById('cat-machines-list').innerHTML=f.map(e=>'<div class="machine-card" onclick="showMachine(\''+e.id+'\')"><div class="mc-brand">'+e.marque+'</div><div class="mc-name">'+e.nom+'</div><div class="mc-meta">'+e.desc+'</div><div class="mc-pills">'+(e.tonnage>0?'<span class="pill tonnage">'+e.tonnage+' T</span>':'')+(e.puissance>0?'<span class="pill power">'+e.puissance+' kW</span>':'')+(e.caces!=='-'?'<span class="pill">CACES '+e.caces+'</span>':'')+'</div></div>').join('');}
+function filterCat(c){catFilter=c;renderCatalogue();}
+function showMachine(id){const e=ENGINS.find(x=>x.id===id);if(!e)return;document.getElementById('machine-detail-content').innerHTML='<div class="machine-card" style="cursor:default"><div class="mc-brand">'+e.marque+'</div><div class="mc-name">'+e.nom+'</div><div class="mc-meta">'+e.desc+'</div><div class="mc-pills">'+(e.tonnage>0?'<span class="pill tonnage">'+e.tonnage+' T</span>':'')+(e.puissance>0?'<span class="pill power">'+e.puissance+' kW</span>':'')+(e.caces!=='-'?'<span class="pill">CACES '+e.caces+'</span>':'')+'</div><div class="price-block"><div class="price-row neuf"><span class="pk">Prix neuf</span><span class="pv">'+e.neuf.toLocaleString('fr')+' €</span></div><div class="price-row occ3"><span class="pk">Occasion 3 ans</span><span class="pv">'+e.occ3.toLocaleString('fr')+' €</span></div><div class="price-row occ5"><span class="pk">Occasion 5 ans</span><span class="pv">'+e.occ5.toLocaleString('fr')+' €</span></div></div></div>';showPage('machine-detail');}
+function renderPannes(){const grouped={};PANNES.forEach(p=>{if(!grouped[p.engin])grouped[p.engin]=[];grouped[p.engin].push(p);});document.getElementById('pannes-list').innerHTML=Object.keys(grouped).map(eng=>'<div class="card" onclick="showPanneEngin(\''+eng+'\')"><div class="card-row"><div class="card-icon">🔧</div><div class="card-body"><div class="card-title">'+eng+'</div><div class="card-desc">'+grouped[eng].length+' pannes répertoriées</div></div><div class="card-arrow">›</div></div></div>').join('');}
+function showPanneEngin(eng){const list=PANNES.filter(p=>p.engin===eng);document.getElementById('pannes-detail-content').innerHTML='<div class="section-h">'+eng+'</div>'+list.map(p=>'<div class="panne-card"><div class="panne-grav '+p.grav+'">'+p.grav+'</div><div class="panne-symptome">'+p.symptome+'</div><div class="panne-block"><strong>Causes possibles</strong>'+p.causes.map(c=>'• '+c).join('<br>')+'</div><div class="panne-block"><strong>Solutions</strong>'+p.solutions.map(s=>'✓ '+s).join('<br>')+'</div></div>').join('');showPage('pannes-detail');}
+function renderStats(){const pct=STATE.qcmTotal>0?Math.round((STATE.qcmGood/STATE.qcmTotal)*100):0;let h='<div class="stats-grid"><div class="stat-tile"><div class="st-icon">⚡</div><div class="st-val">'+STATE.xp+'</div><div class="st-lbl">XP totaux</div></div><div class="stat-tile"><div class="st-icon">🔥</div><div class="st-val">'+STATE.streak+'</div><div class="st-lbl">Jours série</div></div><div class="stat-tile"><div class="st-icon">🎯</div><div class="st-val">'+STATE.qcmCount+'</div><div class="st-lbl">QCM faits</div></div><div class="stat-tile"><div class="st-icon">📈</div><div class="st-val">'+pct+'%</div><div class="st-lbl">Réussite</div></div><div class="stat-tile"><div class="st-icon">📅</div><div class="st-val">'+STATE.daysDone.length+'/30</div><div class="st-lbl">Jours validés</div></div><div class="stat-tile"><div class="st-icon">🚀</div><div class="st-val">J'+STATE.currentDay+'</div><div class="st-lbl">Jour en cours</div></div></div>';h+='<div class="section-h">Par <span class="gr">thème</span></div>';Object.keys(QCM).forEach(k=>{const s=STATE.themeStats[k]||{good:0,total:0};const p=s.total>0?Math.round((s.good/s.total)*100):0;let col='#E74C3C';if(p>=70)col='#2ECC71';else if(p>=50)col='#F4A019';h+='<div class="theme-stats"><div class="ts-row"><div class="ts-name">'+QCM[k].icon+' '+QCM[k].nom+'</div><div class="ts-stats">'+s.good+'/'+s.total+' • '+p+'%</div></div><div class="ts-bar"><div class="ts-bar-fill" style="width:'+p+'%;background:'+col+'"></div></div></div>';});h+='<div style="height:20px"></div><button class="btn-ghost" onclick="resetProgress()">🗑️ Réinitialiser ma progression</button>';document.getElementById('stats-content').innerHTML=h;}
+function resetProgress(){if(confirm('Réinitialiser toute ta progression ?')){STATE={xp:0,streak:0,lastVisit:null,currentDay:1,daysDone:[],qcmCount:0,qcmGood:0,qcmTotal:0,themeStats:{}};saveState();refreshHeader();renderStats();toast('Progression réinitialisée');}}
+loadState();checkStreak();refreshHeader();refreshHome();
+</script>
+</body>
+</html>
